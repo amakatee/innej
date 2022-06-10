@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
+    const highlite = useRef()
     const hello = useRef()
     const navbarRef = useRef()
     const firsTitleBox = useRef()
@@ -45,7 +46,7 @@ export const TransContext = ({children}) => {
            }
          })
 
-         tlIntro.fromTo(mainVideoRef.current, { opacity:0}, {opacity: 1})
+        //  tlIntro.fromTo(mainVideoRef.current, { opacity:0}, {opacity: 1})
          tlIntro.fromTo(firsTitleBox.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.1})
          tlIntro.fromTo(whiteArrow.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.3})
         
@@ -59,20 +60,22 @@ export const TransContext = ({children}) => {
          
 
          useLayoutEffect(() => {
-             console.log(secondText.current)
+             console.log(highlite)
              if(secondSecVis) {
                  const tlSecond = gsap.timeline({
                      scrollTrigger: {
                          trigger: entrySecond.target,
                          markers: true,
                          scrub: true,
-                         start: "-40%",
+                         start: "-10%",
                          end: "40%",
                     }
                  })
-                 tlSecond.fromTo(secondText.current, {color: "rgba(255,255,255, 0.4"}, {color: "rgba(255,255,255, 0.4", stagger: 1})
+                //  tlSecond.fromTo(secondText.current, {y: "-100%", opacity: 0}, {y: "y:0%", opacity:1,  stagger: 1, duration: 1})
+
+                 tlSecond.fromTo(highlite.current, {color: "rgba(255,255,255, 0.7"}, {color: "rgba(255,255,255, 0.4", stagger: 1})
              }
-         })
+         }, [secondSecVis])
   
 
     return (
@@ -89,7 +92,8 @@ export const TransContext = ({children}) => {
             firsTitleBox,
             whiteArrow,
             mainVideoRef,
-            secondText
+            secondText,
+            highlite
 
         }}
         

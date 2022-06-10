@@ -22,6 +22,7 @@ export default function Home() {
     mainVideoRef,
     whiteArrow,
     secondText,
+    highlite,
     hello,
     secondSecVisv} = useContext(TransitionContext)
 
@@ -62,7 +63,11 @@ export default function Home() {
 
       </section>
       <section ref={secondSection} className={styles.second__section}>
-        <h1 ref={secondText} className={styles.second__text}>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable.  </h1>
+        <p ref={secondText} className={styles.second__text}>
+          <span ref={highlite} className={styles.highlite}>Украшения из серебра. </span>
+          <span ref={highlite} className={styles.highlite}>Противоалергенные и водостойкие </span>
+          
+         </p>
      
         
     </section>
