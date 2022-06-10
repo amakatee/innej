@@ -65,11 +65,11 @@ export const TransContext = ({children}) => {
                          trigger: entrySecond.target,
                          markers: true,
                          scrub: true,
-                         start: "0%",
-                         end: "100%",
+                         start: "-40%",
+                         end: "40%",
                     }
                  })
-                 tlSecond.fromTo(secondText.current, {color: "rgba(255,255,255, 0.4)"}, {color: "rgba(255,255,255, 0.4)"})
+                 tlSecond.fromTo(secondText.current, {color: "rgba(255,255,255, 0.4"}, {color: "rgba(255,255,255, 0.4", stagger: 1})
              }
          })
   

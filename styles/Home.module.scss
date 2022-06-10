@@ -256,10 +256,14 @@ $white-color: #fff;
   z-index: 20;
   background-color: rgb(132, 0, 255);
   text-align: center;
+  display: grid;
+  place-content: center;
   margin-top: -20rem;
 
   & .second__text {
+    width: 20rem;
     margin: 0;
+    font-size: 2rem;
     padding: 5rem;
   }
 
