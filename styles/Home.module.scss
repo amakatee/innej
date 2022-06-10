@@ -1,0 +1,261 @@
+@import 'mixins';
+
+$white-color: #fff;
+
+
+.navbar {
+
+  margin-top: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+  min-height: 8vh;
+  padding-block: .5rem;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid $white-color;
+  border-bottom: 1px solid $white-color;
+
+  .navbar__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 96vw;
+    margin: auto;
+   
+    
+  }
+
+  & .burger {
+    display: flex;
+    flex-direction: column;
+    gap: .26rem;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+      width: 28px;
+      height: 1.4px;
+      background-color: $white-color;
+
+    }
+
+  }
+
+  & .logo{
+    font-size: 1.2rem;
+    color: $white-color;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 150;
+   
+    letter-spacing: 1px;
+    
+  }
+  & .shop__bag {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    cursor: pointer;
+
+    span {
+      color: $white-color;
+      font-size: .8rem;
+      letter-spacing: .5px;
+      font-weight: 300;
+    }
+  }
+
+  @include small() {
+   
+  }
+  @include medium() {
+   
+  }
+  @include large() {
+    .burger {
+      display: none;
+    }
+    & .logo{
+      font-size: 1.4rem;
+      color: $white-color;
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 150;
+     
+      letter-spacing: 1px;
+    }
+   
+  }
+
+  
+}
+
+
+.main__container {
+  width: 100vw;
+  min-height: 100vh;
+ 
+}
+
+.first__section {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(15, 40, 121);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+
+  & .fixed {
+    position: fixed;
+    background-color: blue;
+  }
+  & .first__title {
+    position: absolute;
+    bottom: 15vh;
+    left: 8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    cursor: pointer;
+
+    & .first__text{
+      color: $white-color;
+      font-weight: 100;
+      text-transform: uppercase;
+      // font-size: 1.5rem;
+      letter-spacing: 2px;
+      overflow: hidden;
+    }
+    & .white__arrow {
+      overflow: hidden;
+      margin-top: -5px;
+     
+    }
+    & .animation__span {
+      display: block;
+      text-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px;
+      padding: 0rem .4rem;
+    }
+
+  }
+
+
+
+  @include small() {
+    .first__text{
+
+      font-size: 1.4;
+    }
+  
+    
+    .first__secMain {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    
+      video {
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+     
+      }
+      
+     
+
+    
+    }
+   
+  }
+  @include medium() {
+    .first__text{
+
+      font-size: 2;
+    }
+    .first__secMain {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+     
+
+    }
+    
+   
+  }
+  @include large() {
+    .first__section {
+      display: grid;
+      place-content: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+     
+    }
+
+    .first__text{
+
+      font-size: 2.5rem;
+     
+    }
+    .first__secMain {
+      overflow: hidden;
+      width: 20rem;
+      aspect-ratio: 1/1.4;
+      border-top-left-radius: 25rem;
+      border-top-right-radius: 25rem;
+     
+
+     
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+     
+      }
+    }
+   
+  }
+
+
+}
+
+.second__section {
+  width: 100vw;
+ position: relative;
+  min-height: 110vh;
+  z-index: 20;
+  background-color: rgb(132, 0, 255);
+  text-align: center;
+  & .second__text {
+    margin: 0;
+    padding: 5rem;
+  }
+
+
+
+  @include small() {
+    position: relative;
+   
+  }
+  @include medium() {
+   
+  }
+ 
+}
+
+

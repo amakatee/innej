@@ -1,0 +1,34 @@
+
+
+
+$bp-small: 24em;  // ~384px
+$bp-small-2: 29.75em;  // ~476px
+$bp-small-3: 39.8em; // ~636.8px
+$bp-med: 46.8em; // ~748px
+$bp-med-2: 48em;// ~768px
+$bp-large:50em; // ~800px
+$bp-large-2:54.5em;
+$bp-xl: 60em;
+$bp-xl-2: 67em;
+
+
+
+@mixin small {
+  @media (max-width:  46.8em) {
+    @content;
+  }
+}
+
+@mixin medium {
+    @media (min-width: 46.8em) and (max-width:  55em) {
+      @content;
+    }
+ }
+
+
+@mixin large {
+    @media (min-width: 55em) {
+      @content;
+    }
+}
+
