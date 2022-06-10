@@ -59,6 +59,7 @@ export const TransContext = ({children}) => {
          
 
          useLayoutEffect(() => {
+             console.log(secondText.current)
              if(secondSecVis) {
                  const tlSecond = gsap.timeline({
                      scrollTrigger: {
