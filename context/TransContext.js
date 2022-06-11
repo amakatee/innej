@@ -10,8 +10,8 @@ const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
     const highlite = useRef()
-
-  
+   const jewTitleBox = useRef()
+   const darkArrow = useRef()
    const secondVideoRef = useRef()
     const fairyRef = useRef()
     const hello = useRef()
@@ -68,7 +68,7 @@ export const TransContext = ({children}) => {
          
 
          useLayoutEffect(() => {
-            
+            console.log(jewTitleBox.current)
              if(secondSecVis) {
                  const tlSecond = gsap.timeline({
                      scrollTrigger: {
@@ -76,7 +76,7 @@ export const TransContext = ({children}) => {
                          markers: true,
                          scrub: true,
                          start: "-60%",
-                         end: "40%",
+                         end: "50%",
                     }
 
                     
@@ -85,6 +85,9 @@ export const TransContext = ({children}) => {
 
                  tlSecond.fromTo(q(".highlite"), {color: "rgba(0,100,0, 0.2"}, {color: "rgba(0,100,0, 1", stagger: 1})
                  tlSecond.fromTo(fairyRef.current, { y: "-60%" }, {y: "0%" , delay:.4} )
+
+
+               
                  
 
 
@@ -95,10 +98,9 @@ export const TransContext = ({children}) => {
                        
                         scrub: true,
                         start: "-30%",
-                        end: "30%",
+                        end: "40%",
                    }
                 })
-               //  tlSecond.fromTo(secondText.current, {y: "-100%", opacity: 0}, {y: "y:0%", opacity:1,  stagger: 1, duration: 1})
 
                tlRemove.to(q(".highlite"),{color: "rgba(187,219,190, .3", stagger: 1})
 
@@ -107,14 +109,20 @@ export const TransContext = ({children}) => {
                     trigger: entrySecond.target,
                 
                     scrub: true,
-                    start: "-20%",
-                    end: "30%",
+                    start: "20%",
+                    end: "70%",
                }
             })
-            tlParalax.fromTo(secondVideoRef.current, { y:0 }, {y: 150 , delay:.4} )
+        
+
+            tlParalax.fromTo(secondVideoRef.current, { y:0 }, {y: 40 , delay:.4} )
+           
                
 
             }
+
+            
+          
             
              
 
@@ -142,7 +150,9 @@ export const TransContext = ({children}) => {
             secondText,
             highlite,
             fairyRef,
-            secondVideoRef
+            secondVideoRef,
+            darkArrow,
+            jewTitleBox
 
         }}
         
