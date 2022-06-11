@@ -10,6 +10,7 @@ const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
     const highlite = useRef()
+    const fairyRef = useRef()
     const hello = useRef()
     const navbarRef = useRef()
     const firsTitleBox = useRef()
@@ -49,6 +50,8 @@ export const TransContext = ({children}) => {
         //  tlIntro.fromTo(mainVideoRef.current, { opacity:0}, {opacity: 1})
          tlIntro.fromTo(firsTitleBox.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.1})
          tlIntro.fromTo(whiteArrow.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.3})
+         tlIntro.fromTo(fairyRef.current, { y: "0%" }, {y: "-100%" , delay:1} )
+
         
       
 
@@ -74,8 +77,12 @@ export const TransContext = ({children}) => {
                 //  tlSecond.fromTo(secondText.current, {y: "-100%", opacity: 0}, {y: "y:0%", opacity:1,  stagger: 1, duration: 1})
 
                  tlSecond.fromTo(highlite.current, {color: "rgba(255,255,255, 0.7"}, {color: "rgba(255,255,255, 0.4", stagger: 1})
+                 tlSecond.fromTo(fairyRef.current, { y: "-60%" }, {y: "0%" , delay:.4} )
+
              }
          }, [secondSecVis])
+
+   
   
 
     return (
@@ -93,7 +100,8 @@ export const TransContext = ({children}) => {
             whiteArrow,
             mainVideoRef,
             secondText,
-            highlite
+            highlite,
+            fairyRef
 
         }}
         

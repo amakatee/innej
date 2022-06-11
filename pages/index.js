@@ -10,12 +10,16 @@ import WhiteArrow from '../assets/whitearrow.svg'
 // import { useInView } from 'react-intersection-observer';
 import {useLayoutEffect} from 'react'
 // gsap.registerPlugin(ScrollTrigger);
+import fairy from '../public/tenor.gif'
+
+
 
 export default function Home() {
-  console.log(WhiteArrow)
+ 
   const {firstSection,
     firstSecVis,
     entry,
+    fairyRef,
     secondSection,
     entireMainRef,
     firsTitleBox,
@@ -34,6 +38,7 @@ export default function Home() {
     <Navbar />
     <div className={styles.main__container}>
       <section ref={ firstSection} className={styles.first__section}>
+     
    
         <div className={styles.first__secMain}>
         {/* <div className={styles.first__image}>
@@ -46,6 +51,7 @@ export default function Home() {
             >
             </source>
           </video>
+        
          
           </div>
           <div className={styles.first__title}>
@@ -60,6 +66,7 @@ export default function Home() {
 
           </div>
           
+          
 
       </section>
       <section ref={secondSection} className={styles.second__section}>
@@ -68,6 +75,12 @@ export default function Home() {
           <span ref={highlite} className={styles.highlite}>Противоалергенные и водостойкие </span>
           
          </p>
+{/*          
+          <div ref={fairyRef} className={styles.fairy}>
+            <img  src='/tenor.gif'>
+            </img>
+          </div> */}
+        
      
         
     </section>
@@ -75,6 +88,10 @@ export default function Home() {
 
     
     </div>
+    <div ref={fairyRef} className={styles.fairy}>
+            <img  src='/tenor.gif'>
+            </img>
+      </div>
     </div>
   )
 }
