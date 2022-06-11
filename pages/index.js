@@ -83,7 +83,7 @@ export default function Home() {
            <div className={styles.second__video}>
           <video ref={secondVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
             <source
-            src='/2.mp4'
+            src='/bracelet.mp4'
             type='video/mp4'
             >
             </source>
