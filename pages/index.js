@@ -20,6 +20,7 @@ export default function Home() {
     firstSecVis,
     entry,
     fairyRef,
+    secondVideoRef,
     secondSection,
     entireMainRef,
     firsTitleBox,
@@ -70,17 +71,29 @@ export default function Home() {
 
       </section>
       <section ref={secondSection} className={styles.second__section}>
+      
         <p ref={secondText} className={styles.second__text}>
-          <span ref={highlite} className={styles.highlite}>Украшения из серебра. </span>
-          <span ref={highlite} className={styles.highlite}>Противоалергенные и водостойкие </span>
+          <span ref={highlite}className="highlite">Украшения из серебра. </span>
+          <span ref={highlite} className="highlite">Противоалергенные и водостойкие </span>
           
          </p>
-{/*          
-          <div ref={fairyRef} className={styles.fairy}>
-            <img  src='/tenor.gif'>
-            </img>
-          </div> */}
-        
+
+     
+   
+           <div className={styles.second__video}>
+          <video ref={secondVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
+            <source
+            src='/2.mp4'
+            type='video/mp4'
+            >
+            </source>
+          </video>
+          </div>
+     
+           
+
+   
+
      
         
     </section>
@@ -91,6 +104,7 @@ export default function Home() {
     <div ref={fairyRef} className={styles.fairy}>
             <img  src='/tenor.gif'>
             </img>
+          
       </div>
     </div>
   )

@@ -97,6 +97,10 @@ $white-color: #fff;
 .main__container {
   width: 100vw;
   min-height: 100vh;
+  background-color: #deebdd;
+  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+
+
  
 }
 .fairy {
@@ -114,7 +118,7 @@ $white-color: #fff;
   width: 100vw;
   min-height: 100vh;
  
-  background-color: rgb(15, 40, 121);
+  // background-color: rgb(15, 40, 121);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,7 +128,7 @@ $white-color: #fff;
 
   & .fixed {
     position: fixed;
-    background-color: blue;
+ 
   }
   & .first__title {
     position: absolute;
@@ -162,6 +166,7 @@ $white-color: #fff;
 
 
   @include small() {
+   
     .white__arrow {
       
       width: 4.5rem;}
@@ -243,6 +248,7 @@ $white-color: #fff;
 
     }
     .fairy {
+      
       position: absolute;
       top: 50vh;
       left: 5rem;
@@ -260,6 +266,7 @@ $white-color: #fff;
    
   }
   @include large() {
+    
     .white__arrow {
       
       width: 6rem;}
@@ -313,15 +320,18 @@ $white-color: #fff;
   z-index: 20;
   overflow: hidden;
   // background-color: #f8f8ff;
-  // background-color: #d9d9d9;
+  background-color:		#F9F6EE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   // background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
-  background-color: #f6ecc4;
-  background-image: linear-gradient(315deg, #f6ecc4 0%, #f7d4d4 74%);
+  
+
   
   
 
 
-  margin-top: -5rem;
+ 
 
   & .second__text {
 
@@ -330,12 +340,13 @@ $white-color: #fff;
     margin: 0;
  
     text-align: start;
-    font-size: .9rem;
-    line-height: 1.6rem;
-    letter-spacing: .6px;
+    font-size: .8rem;
+
+    letter-spacing: .9px;
+    line-height: 1.7rem;
+    font-weight: 300;
     text-transform: uppercase;
-    font-weight: 200;
-    padding: 5% 30%;
+    padding: 20% 10%;
     position: relative;
 
     // & .highlite {
@@ -345,7 +356,24 @@ $white-color: #fff;
  
     
   }
+ 
+
+  .second__video {
+    position: absolute;
+    top: 28%;
+    width: 12rem;
+    aspect-ratio: 1/1.2;
+    
   
+
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+ 
 
 
 
@@ -364,7 +392,7 @@ $white-color: #fff;
 .fairy {
 
   width: 8rem;
-  margin-top:  -80%;
+
   position: sticky;
   overflow: hidden;
   z-index: 500;
@@ -382,7 +410,7 @@ $white-color: #fff;
   }
 
   @include small() {
-    margin-top: -319%;
+    margin-top: -114vh;
     width: 4rem;
     left: 70%;
    
@@ -390,7 +418,7 @@ $white-color: #fff;
   }
   @include medium() {
     margin-top: 0;
-    margin-top: -180%;
+    margin-top: -112vh;
     width: 4rem;
     left: 70%;
    
@@ -398,8 +426,8 @@ $white-color: #fff;
   }
   @include large() {
     margin-top: 0;
-    margin-top: -180%;
-    width: 8rem;
+    margin-top: -113vh;
+    width: 4rem;
     left: 70%;
    
    
