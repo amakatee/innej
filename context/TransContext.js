@@ -12,6 +12,7 @@ export const TransContext = ({children}) => {
     const highlite = useRef()
    const jewTitleBox = useRef()
    const darkArrow = useRef()
+   const secondVideoOverlayRef = useRef()
    const secondVideoRef = useRef()
     const fairyRef = useRef()
     const hello = useRef()
@@ -73,10 +74,10 @@ export const TransContext = ({children}) => {
                  const tlSecond = gsap.timeline({
                      scrollTrigger: {
                          trigger: entrySecond.target,
-                         markers: true,
+                    
                          scrub: true,
-                         start: "-60%",
-                         end: "50%",
+                         start: "-70%",
+                         end: "10%",
                     }
 
                     
@@ -85,6 +86,10 @@ export const TransContext = ({children}) => {
 
                  tlSecond.fromTo(q(".highlite"), {color: "rgba(0,100,0, 0.2"}, {color: "rgba(0,100,0, 1", stagger: 1})
                  tlSecond.fromTo(fairyRef.current, { y: "-60%" }, {y: "0%" , delay:.4} )
+
+
+              
+               
 
 
                
@@ -116,6 +121,22 @@ export const TransContext = ({children}) => {
         
 
             tlParalax.fromTo(secondVideoRef.current, { y:0 }, {y: 40 , delay:.4} )
+ 
+            const tlText= gsap.timeline({
+                scrollTrigger: {
+                    trigger: entrySecond.target,
+                    
+                  
+                    start: "-20%",
+                    end: "40%",
+               }
+            })
+            console.log(secondVideoOverlayRef.current)
+
+            tlText.fromTo(jewTitleBox.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56}, ">30%")
+            tlText.fromTo(darkArrow.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56}, ">20%")
+
+        
            
                
 
