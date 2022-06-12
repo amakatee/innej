@@ -35,6 +35,7 @@ export default function Home() {
     hello,
     whiteArrow,
     thirdVideoRef,
+    thirdVideoText,
     secondSecVisv} = useContext(TransitionContext)
 
   
@@ -90,7 +91,10 @@ export default function Home() {
          </p>
          <div className={styles.second__desktop}>
          
-   
+         <div className={styles.title__cont}>
+         <Title title="украшения" refer="darkArrow" titleref="jewTitleBox" />
+         </div>
+
            <div className={styles.second__video}>
           <video ref={secondVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
             <source
@@ -102,9 +106,7 @@ export default function Home() {
           {/* <div ref={secondVideoOverlayRef} className='second-video-overlay'></div> */}
           </div>
 
-          <div className={styles.title__cont}>
-         <Title title="украшения" refer="darkArrow" titleref="jewTitleBox" />
-         </div>
+         
 
           </div>
 
@@ -136,19 +138,26 @@ export default function Home() {
       <section ref={thirdSectionRef} className={styles.third_section}>
         <div className={styles.third__cont}>
 
-        <div className={styles.title__third}>
+        {/* <div className={styles.title__third}>
         <Title title="одежда" refer="thirdArrow" titleref="thirdTitle"/>
 
-        </div>
+        </div> */}
 
-        <div className={styles.video__cont}>
-        <video ref={thirdVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
+        {/* <div className={styles.video__cont}> */}
+        <video ref={thirdVideoRef} className={styles.video__third}  muted={true} autoPlay={true} playsInline controls={false} >
             <source
-            src='/bracelet.mp4'
+            src='/backvideo.mp4'
             type='video/mp4'
             >
             </source>
           </video>
+{/* 
+        </div > */}
+        <div ref={thirdVideoText} className={styles.third__info}>
+        <h3 className='video-h3'>  <br /> <span>Качественные ткани</span><br/></h3>
+        <h3 className='video-h3'><span>Только лучшие материалы</span><br /></h3>
+        <h3 className='video-h3'><span>Идеальная посадка</span><br /></h3>
+        <h3 className='video-h3'><span>Смотреть</span><br /></h3>
 
         </div>
      

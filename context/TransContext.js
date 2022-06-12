@@ -23,6 +23,8 @@ export const TransContext = ({children}) => {
     const firsTitleBox = useRef()
     const whiteArrow = useRef()
     const mainVideoRef = useRef()
+    const thirdVideoText = useRef()
+    const t = gsap.utils.selector(thirdVideoText)
     const secondText = useRef()
     const q = gsap.utils.selector(secondText)
     const { ref:entireMainRef , inView: entireMainVis, entry: entryEntire } = useInView();
@@ -82,6 +84,9 @@ export const TransContext = ({children}) => {
                          scrub: true,
                          start: "-70%",
                          end: "10%",
+                        
+                    
+
                     }
 
                     
@@ -133,6 +138,7 @@ export const TransContext = ({children}) => {
                   
                     start: "-20%",
                     end: "60%",
+
                }
             })
             console.log(secondVideoOverlayRef.current)
@@ -159,25 +165,31 @@ export const TransContext = ({children}) => {
 
 
     useLayoutEffect(() => {
+      console.log(thirdVideoRef.current)
        
 
         if(thirdSecVis) {
         
-         const tlThird = gsap.timeline({
+         const tlVideo = gsap.timeline({
            scrollTrigger: {
              trigger: entryThird.target,
              start: '0%',
-             end: '30%',
+             end: '150%',
+             scrub: true,
+             pin:true,
          
             
        
            }
            
          })
-         console.log(thirdTitle)
-         tlThird.fromTo(thirdTitle.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56})
-         tlThird.fromTo(thirdArrow.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56}, "<20%")
 
+         console.log(t(".video-h3"))
+
+         tlVideo.fromTo(thirdVideoRef.current, {currentTime: 0}, {currentTime: 3})
+         tlVideo.fromTo(t(".video-h3"), {opacity: 0}, {opacity: 1, stagger: 0.25}, "<")
+       
+        
 
    
 
@@ -215,7 +227,10 @@ export const TransContext = ({children}) => {
             jewTitleBox,
             thirdArrow,
             thirdTitle,
-            thirdVideoRef
+            thirdVideoRef,
+            thirdSectionRef,
+            thirdVideoText
+            
         
 
         }}
