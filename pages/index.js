@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import TransitionContext from '../context/TransContext';
 import Navbar from '../components/Navbar';
-import Title from '../components/Title'
+import Title from '../components/Title';
+import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 // import { gsap } from "gsap"
 import WhiteArrow from '../assets/whitearrow.svg'
@@ -64,7 +65,9 @@ export default function Home() {
          
           </div>
           <div className={styles.first__title}>
+            <Link href='products'>
           <h1 className={styles.first__text}><span ref={firsTitleBox}  className={styles.animation__span}  >СМОТРЕТЬ</span></h1>
+          </Link>
             <div className={styles.white__arrow} >
              <span ref={whiteArrow} className={styles.animation__span} >
           

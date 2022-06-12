@@ -9,14 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
-  const thirdVideoRef = useRef()
+    const sidebarRef = useRef()
+    const thirdVideoRef = useRef()
     const highlite = useRef()
     const thirdTitle = useRef()
     const thirdArrow = useRef()
-   const jewTitleBox = useRef()
-   const darkArrow = useRef()
-   const secondVideoOverlayRef = useRef()
-   const secondVideoRef = useRef()
+    const jewTitleBox = useRef()
+    const darkArrow = useRef()
+    const secondVideoOverlayRef = useRef()
+    const secondVideoRef = useRef()
     const fairyRef = useRef()
     const hello = useRef()
     const navbarRef = useRef()
@@ -36,6 +37,9 @@ export const TransContext = ({children}) => {
 
       gsap.fromTo(navbarRef.current, {y:'-100%', opacity:0 } , 
       {y:'0%' , opacity: 1, duration:.5, delay: .5, ease: "power3.out"})
+
+      console.log(sidebarRef)
+     gsap.fromTo(sidebarRef.current, {x: "-200%"}, {x: 0 , duration: 0.8})
     })
  
     
@@ -129,14 +133,14 @@ export const TransContext = ({children}) => {
             })
         
 
-            tlParalax.fromTo(secondVideoRef.current, { y:0 }, {y: 60 , delay:.4} )
+            tlParalax.fromTo(secondVideoRef.current, { y:0 }, {y: 50 , delay:.4} )
  
             const tlText= gsap.timeline({
                 scrollTrigger: {
                     trigger: entrySecond.target,
                     
                   
-                    start: "-20%",
+                    start: "-50%",
                     end: "60%",
 
                }
@@ -187,7 +191,7 @@ export const TransContext = ({children}) => {
          console.log(t(".video-h3"))
 
          tlVideo.fromTo(thirdVideoRef.current, {currentTime: 0}, {currentTime: 3, duration:2})
-         tlVideo.fromTo(t(".video-h3"), {opacity: 0}, {opacity: 1, stagger: 0.25}, "<")
+         tlVideo.fromTo(t(".video-h3"), {opacity: 0}, {opacity: 1, stagger: 0.28}, "<")
        
         
 
@@ -201,6 +205,8 @@ export const TransContext = ({children}) => {
         
        
          }, [thirdSecVis]) 
+
+       
 
    
   
@@ -229,7 +235,8 @@ export const TransContext = ({children}) => {
             thirdTitle,
             thirdVideoRef,
             thirdSectionRef,
-            thirdVideoText
+            thirdVideoText,
+            sidebarRef,
             
         
 
