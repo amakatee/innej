@@ -21,6 +21,7 @@ export default function Home() {
     firstSecVis,
     entry,
     fairyRef,
+    thirdSectionRef,
     secondVideoOverlayRef,
     secondVideoRef,
     secondSection,
@@ -33,12 +34,14 @@ export default function Home() {
     highlite,
     hello,
     whiteArrow,
+    thirdVideoRef,
     secondSecVisv} = useContext(TransitionContext)
 
   
 
   
   return (
+    <>
     <div ref={entireMainRef}>
     <Navbar />
     <div className={styles.main__container}>
@@ -100,7 +103,7 @@ export default function Home() {
           </div>
 
           <div className={styles.title__cont}>
-         <Title title="украшения" />
+         <Title title="украшения" refer="darkArrow" titleref="jewTitleBox" />
          </div>
 
           </div>
@@ -113,18 +116,51 @@ export default function Home() {
      
         
     </section>
-    <section ref={styles.thirdSection} className={styles.third_section}>
+   
 
-    </section>
      
 
-    
-    </div>
     <div ref={fairyRef} className={styles.fairy}>
             <img  src='/tenor.gif'>
             </img>
           
       </div>
     </div>
+    {/* <div ref={fairyRef} className={styles.fairy}>
+            <img  src='/tenor.gif'>
+            </img>
+          
+      </div> */}
+
+
+      <section ref={thirdSectionRef} className={styles.third_section}>
+        <div className={styles.third__cont}>
+
+        <div className={styles.title__third}>
+        <Title title="одежда" refer="thirdArrow" titleref="thirdTitle"/>
+
+        </div>
+
+        <div className={styles.video__cont}>
+        <video ref={thirdVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
+            <source
+            src='/bracelet.mp4'
+            type='video/mp4'
+            >
+            </source>
+          </video>
+
+        </div>
+     
+        
+
+        </div>
+     
+      
+
+    </section>
+    </div>
+    
+    </>
   )
 }

@@ -9,7 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
+  const thirdVideoRef = useRef()
     const highlite = useRef()
+    const thirdTitle = useRef()
+    const thirdArrow = useRef()
    const jewTitleBox = useRef()
    const darkArrow = useRef()
    const secondVideoOverlayRef = useRef()
@@ -25,6 +28,7 @@ export const TransContext = ({children}) => {
     const { ref:entireMainRef , inView: entireMainVis, entry: entryEntire } = useInView();
     const { ref:firstSection , inView: firstSecVis, entry } = useInView();
     const { ref:secondSection , inView: secondSecVis, entry:entrySecond } = useInView();
+    const { ref:thirdSectionRef , inView: thirdSecVis, entry:entryThird } = useInView();
 
     useLayoutEffect(() => {
 
@@ -52,7 +56,7 @@ export const TransContext = ({children}) => {
        
            }
          })
-
+   
         //  tlIntro.fromTo(mainVideoRef.current, { opacity:0}, {opacity: 1})
          tlIntro.fromTo(firsTitleBox.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.1})
          tlIntro.fromTo(whiteArrow.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.3})
@@ -107,7 +111,7 @@ export const TransContext = ({children}) => {
                    }
                 })
 
-               tlRemove.to(q(".highlite"),{color: "rgba(187,219,190, .3", stagger: 1})
+               tlRemove.to(q(".highlite"),{color: "rgba(0,100,0, .2", stagger: 1})
 
                const tlParalax= gsap.timeline({
                 scrollTrigger: {
@@ -128,7 +132,7 @@ export const TransContext = ({children}) => {
                     
                   
                     start: "-20%",
-                    end: "40%",
+                    end: "60%",
                }
             })
             console.log(secondVideoOverlayRef.current)
@@ -143,6 +147,8 @@ export const TransContext = ({children}) => {
             }
 
             
+
+            
           
             
              
@@ -150,6 +156,39 @@ export const TransContext = ({children}) => {
 
              
          }, [secondSecVis])
+
+
+    useLayoutEffect(() => {
+       
+
+        if(thirdSecVis) {
+        
+         const tlThird = gsap.timeline({
+           scrollTrigger: {
+             trigger: entryThird.target,
+             start: '0%',
+             end: '30%',
+         
+            
+       
+           }
+           
+         })
+         console.log(thirdTitle)
+         tlThird.fromTo(thirdTitle.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56})
+         tlThird.fromTo(thirdArrow.current, {y:" -100%", opacity: 0}, { y:0, opacity:1, duration: 0.56}, "<20%")
+
+
+   
+
+        
+      
+
+
+        }
+        
+       
+         }, [thirdSecVis]) 
 
    
   
@@ -173,7 +212,11 @@ export const TransContext = ({children}) => {
             fairyRef,
             secondVideoRef,
             darkArrow,
-            jewTitleBox
+            jewTitleBox,
+            thirdArrow,
+            thirdTitle,
+            thirdVideoRef
+        
 
         }}
         
