@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContext, useState } from 'react'
 import TransitionContext from '../context/TransContext'
+import Image from 'next/image'
 
 const Carousel = () => {
     const { swatchRef, mobileGalleryRef } = useContext(TransitionContext)
@@ -30,7 +31,7 @@ const Carousel = () => {
         <div ref={mobileGalleryRef}  className='gallery'>
             {images.map(img => (
              <div className='gallery-container first-img'>
-                 <img   src={img.url}/>
+                 <img key={img}   src={img.url}/>
              </div>
                 
             ))}
@@ -39,7 +40,7 @@ const Carousel = () => {
         <div className='swatch-cont'>
             <div ref={swatchRef} className='swatches'>
                 {images.map((img, index) => (
-                  <span onClick={() => setCurrenImgIndex(index)}  className={currentImgIndex === index ? 'active-swatch' : 'swatch' } swatch={currentImgIndex}></span>
+                  <span key={index} onClick={() => setCurrenImgIndex(index)}  className={currentImgIndex === index ? 'active-swatch' : 'swatch' } swatch={currentImgIndex}></span>
 
                 ))}
                     

@@ -672,13 +672,15 @@ a {
   flex-direction: column;
 
 
-  .sp-carousel {
-    background-color: white;
-    width: 100vw;
-    height: 85vh ;
-  }
 
   @include small() {
+    .sp-carousel {
+      background-color: white;
+      width: 100vw;
+      height: 85vh ;
+      overflow: hidden;
+    }
+  
     .gallery-mobile {
 
       overflow: hidden;
@@ -710,6 +712,8 @@ a {
         align-items: center;
         justify-content: center;
         aspect-ratio: 1/1.4;
+
+      
     
         
         img {
@@ -725,9 +729,9 @@ a {
     .swatch-cont {
    
       position: absolute;
-      top: 50%;
+      top: 35%;
       right: 10%;
-      transform: translateY(-100%);
+     
     
       .swatches {
         display: flex;
