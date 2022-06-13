@@ -7,7 +7,7 @@ const ProductIcon = () => {
     <Link href="/products/product/slug">
     <div className='prodcut-i-cart'>
       <div className='product-i-img'> 
-      <Image layout='fill' alt='' src='/backimage-min.jpg'/> 
+      <Image layout='fill' alt='' src='/backimg-min.jpg'/> 
       </div>
       <div className='product-i-desc'>
         <h1>Платье Паутина</h1>

@@ -30,8 +30,8 @@ const Carousel = () => {
       
         <div ref={mobileGalleryRef}  className='gallery'>
             {images.map(img => (
-             <div className='gallery-container first-img'>
-                 <Image layout='fill' alt=""  key={img}   src={img.url}/>
+             <div key={img} className='gallery-container first-img'>
+                 <Image layout='fill' alt=""     src={img.url}/>
              </div>
                 
             ))}
@@ -52,9 +52,9 @@ const Carousel = () => {
     
 
     <div className='gallery-desktop'>
-        <img className='first-desk' src="https://i.pinimg.com/564x/ad/1e/a8/ad1ea8f65e145b4e928b584748f664a0.jpg"/>
-        <img className='second-desk'  src="https://i.pinimg.com/564x/ad/1e/a8/ad1ea8f65e145b4e928b584748f664a0.jpg"/>
-        <img className='third-desk' src="https://i.pinimg.com/564x/ad/1e/a8/ad1ea8f65e145b4e928b584748f664a0.jpg"/>
+        <Image layout='fill' alt='' className='first-desk' src="/backimg-min.jpg"/>
+        <Image layout='fill' alt='' className='second-desk'  src="/backimg-min.jpg"/>
+        <Image layout='fill' alt='' className='third-desk' src="/backimg-min.jpg"/>
 
     </div>
     </div>

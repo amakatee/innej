@@ -5,6 +5,7 @@ import TransitionContext from '../context/TransContext';
 import Navbar from '../components/Navbar';
 import Title from '../components/Title';
 import Link from 'next/link'
+
 import { useRef, useEffect, useState } from 'react'
 // import { gsap } from "gsap"
 import WhiteArrow from '../assets/whitearrow.svg'
@@ -126,8 +127,8 @@ export default function Home() {
      
 
     <div ref={fairyRef} className={styles.fairy}>
-            <img  src='/tenor.gif'>
-            </img>
+            <Image layout='fill' alt=''  src='/tenor.gif' />
+         
           
       </div>
     </div>
