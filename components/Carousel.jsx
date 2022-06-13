@@ -10,15 +10,15 @@ const Carousel = () => {
   const images = [
       {
           id: "0",
-          url: "https://i.pinimg.com/564x/ad/1e/a8/ad1ea8f65e145b4e928b584748f664a0.jpg"
+          url: "/backimg-min.jpg"
       },
       {
         id: "1",
-        url: "https://i.pinimg.com/736x/57/d4/71/57d4715e412f0e847cb5415fca004306.jpg"
+        url: "/backimg-min.jpg"
       },
       {
         id: "2",
-        url: "https://i.pinimg.com/564x/a8/9d/b2/a89db2ec7b541f42ce6fe50a498b4973.jpg"
+        url: "/backimg-min.jpg"
       },
      
   ]
@@ -31,7 +31,7 @@ const Carousel = () => {
         <div ref={mobileGalleryRef}  className='gallery'>
             {images.map(img => (
              <div className='gallery-container first-img'>
-                 <img key={img}   src={img.url}/>
+                 <Image layout='fill' alt=""  key={img}   src={img.url}/>
              </div>
                 
             ))}
