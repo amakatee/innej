@@ -9,6 +9,20 @@ gsap.registerPlugin(ScrollTrigger);
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
+   /* Products Page Refs*/
+   const swatchRef = useRef()
+   const sw = gsap.utils.selector(swatchRef)
+   const mobileGalleryRef = useRef()
+
+   const galleryCont =  gsap.utils.selector(mobileGalleryRef)
+
+
+
+ 
+
+   /* Product Page Refs */
+
+
     const sidebarRef = useRef()
     const thirdVideoRef = useRef()
     const highlite = useRef()
@@ -207,7 +221,28 @@ export const TransContext = ({children}) => {
          }, [thirdSecVis]) 
 
        
+    useLayoutEffect(() => {
+      let currentSwatch = 0
+      const swatches = sw('.swatch, .active-swatch')
+      const slides = galleryCont('.gallery-container')
+      swatches.forEach((swatch, index) => {
+         const coord = slides[index].getBoundingClientRect().left
+         
+         swatch.addEventListener("click", e => {
+           let swatchName = e.target.getAttribute('swatch')
+           console.log(e)
+           console.log(swatchName)
 
+           gsap.to(mobileGalleryRef.current, {x: -coord, duration: .75})
+         })
+     
+
+      })
+     
+     
+     
+      console.log(mobileGalleryRef.current)
+    }, [])
    
   
 
@@ -237,6 +272,10 @@ export const TransContext = ({children}) => {
             thirdSectionRef,
             thirdVideoText,
             sidebarRef,
+            swatchRef, 
+            mobileGalleryRef, 
+     
+            sw
             
         
 

@@ -7,11 +7,13 @@ $green: #006400;
 
 
 
+
 .main__container {
   width: 100vw;
   min-height: 100vh;
-  background-color: #deebdd;
-  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+  background-color: #20bf55;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  
 
 
  
@@ -85,7 +87,7 @@ $green: #006400;
     }
     .first__secMain {
       background-color: transparent;
-      background-image: url("/backimg-min.JPG");
+      background-image: url("/backimg-min.jpg");
       background-size: cover;
     }
     .first__text{
@@ -205,7 +207,7 @@ $green: #006400;
     }
     .first__secMain {
       overflow: hidden;
-      width: 20rem;
+      width: 23rem;
       aspect-ratio: 1/1.4;
       border-top-left-radius: 25rem;
       border-top-right-radius: 25rem;
@@ -277,11 +279,15 @@ $green: #006400;
   .second__video {
    
     aspect-ratio: 1/1;
+    position: relative;
     
   
 
 
     video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
