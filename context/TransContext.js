@@ -1,14 +1,19 @@
-import Draggable from "gsap/dist/Draggable";
+
 
 
 import {createContext, useRef, useEffect, useState} from "react"
 
 
+
 import { gsap } from "gsap"
+import Draggable from "gsap/dist/Draggable";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 import { useInView } from 'react-intersection-observer';
 import {useLayoutEffect} from 'react'
+
+
+
 
 
 
@@ -245,21 +250,17 @@ export const TransContext = ({children}) => {
            let swatchName = parseInt(e.target.getAttribute('swatch'))
            console.log(e)
            console.log(swatchName)
+           currentSwatch = swatchName
 
            gsap.to(mobileGalleryRef.current, {y: -coord, duration: .75})
          })
 
-        
+       
         let move = slides[0].getBoundingClientRect().y
         console.log(move)      
 
-       let c = slides[index].getBoundingClientRect()
-       console.log(c)
-  
-        // let entirecoords = contcoord.getBoundingClientRect().height
        
-       
-
+    
         let coordy = 0
         // let move = 0 
         gsap.registerPlugin(Draggable);
@@ -270,34 +271,34 @@ export const TransContext = ({children}) => {
         inertia: true,
         onPress: function(e) {
           coordy = -this.y
-          console.log(this.target) ;
+          
 
         },
       
         onDragEnd: function(){
          
-  
-          
-            const dir = this.getDirection("velocity")
-            console.log(dir)
-            console.log(coordy)
+             console.log(swatch,index)
+             
             
-            // let entirecoords = contcoord.getBoundingClientRect().height
+            const dir = this.getDirection("velocity")
+
+           
+            
    
             let coordone = slides[0].getBoundingClientRect().height
             let entirecoords = coordone * slides.length
-            console.log(entirecoords)
-   
-            console.log(move)
+           
             if(dir === "up" ) {
               move = coordy + coordone
               
-              gsap.to(mobileGalleryRef.current, {y: -move, duration: .45})  
-
+              gsap.to(mobileGalleryRef.current, {y: -move, duration: .55})  
+              setCurrenImgIndex(currentSwatch)
             } else if (dir === "down" ){
               move = coordy - coordone
             
-             gsap.to(mobileGalleryRef.current, {y: -move, duration: .45})  
+             gsap.to(mobileGalleryRef.current, {y: -move, duration: .55})  
+         
+            
 
 
             }
