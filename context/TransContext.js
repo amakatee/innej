@@ -1,15 +1,23 @@
+import Draggable from "gsap/dist/Draggable";
+
+
 import {createContext, useRef, useEffect, useState} from "react"
+
 
 import { gsap } from "gsap"
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 import { useInView } from 'react-intersection-observer';
 import {useLayoutEffect} from 'react'
-gsap.registerPlugin(ScrollTrigger);
+
+
 
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
    /* Products Page Refs*/
+   const mobGalCont = useRef()
+   const [currentImgIndex, setCurrenImgIndex] = useState(0)
    const swatchRef = useRef()
    const sw = gsap.utils.selector(swatchRef)
    const mobileGalleryRef = useRef()
@@ -80,7 +88,7 @@ export const TransContext = ({children}) => {
         //  tlIntro.fromTo(mainVideoRef.current, { opacity:0}, {opacity: 1})
          tlIntro.fromTo(firsTitleBox.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.1})
          tlIntro.fromTo(whiteArrow.current, {y:" -100%", opacity:0}, {opacity: 1, y:0, delay:.3})
-         tlIntro.fromTo(fairyRef.current, { y: "0%" }, {y: "-50%" , delay:1} )
+        //  tlIntro.fromTo(fairyRef.current, { y: "0%" }, {y: "-50%" , delay:1} )
 
         
       
@@ -222,22 +230,101 @@ export const TransContext = ({children}) => {
 
        
     useLayoutEffect(() => {
+      
       let currentSwatch = 0
       const swatches = sw('.swatch, .active-swatch')
       const slides = galleryCont('.gallery-container')
+      console.log(slides)
+      console.log(swatches)
+
       swatches.forEach((swatch, index) => {
-         const coord = slides[index].getBoundingClientRect().left
+         const coord = slides[index].getBoundingClientRect().top
+         console.log(coord)
          
          swatch.addEventListener("click", e => {
-           let swatchName = e.target.getAttribute('swatch')
+           let swatchName = parseInt(e.target.getAttribute('swatch'))
            console.log(e)
            console.log(swatchName)
 
-           gsap.to(mobileGalleryRef.current, {x: -coord, duration: .75})
+           gsap.to(mobileGalleryRef.current, {y: -coord, duration: .75})
          })
-     
+
+        
+        let move = slides[0].getBoundingClientRect().y
+        console.log(move)      
+
+       let c = slides[index].getBoundingClientRect()
+       console.log(c)
+  
+        // let entirecoords = contcoord.getBoundingClientRect().height
+       
+       
+
+        let coordy = 0
+        // let move = 0 
+        gsap.registerPlugin(Draggable);
+      Draggable.create(mobileGalleryRef.current, {
+        bounds:mobGalCont.current,
+        type:'y',
+        throwProps:true,
+        inertia: true,
+        onPress: function(e) {
+          coordy = -this.y
+          console.log(this.target) ;
+
+        },
+      
+        onDragEnd: function(){
+         
+  
+          
+            const dir = this.getDirection("velocity")
+            console.log(dir)
+            console.log(coordy)
+            
+            // let entirecoords = contcoord.getBoundingClientRect().height
+   
+            let coordone = slides[0].getBoundingClientRect().height
+            let entirecoords = coordone * slides.length
+            console.log(entirecoords)
+   
+            console.log(move)
+            if(dir === "up" ) {
+              move = coordy + coordone
+              
+              gsap.to(mobileGalleryRef.current, {y: -move, duration: .45})  
+
+            } else if (dir === "down" ){
+              move = coordy - coordone
+            
+             gsap.to(mobileGalleryRef.current, {y: -move, duration: .45})  
+
+
+            }
+            
+
+
+},
+ 
+        // liveSnap: {
+          
+        // y: function(endValue){
+        //     const coordone = slides[0].getBoundingClientRect().height
+            
+        //     console.log(entirecoords)
+        //     console.log(endValue)
+        //     return Math.round(endValue/ 100) * 100
+
+        //   }
+         
+        // }
+
+       
+      })
 
       })
+  
+     
      
      
      
@@ -274,8 +361,11 @@ export const TransContext = ({children}) => {
             sidebarRef,
             swatchRef, 
             mobileGalleryRef, 
+            currentImgIndex,
+           setCurrenImgIndex,
+           mobGalCont,
      
-            sw
+
             
         
 
@@ -291,3 +381,61 @@ export const TransContext = ({children}) => {
 
 
 export default TransitionContext
+
+
+/*
+   gsap.registerPlugin(Draggable);
+      Draggable.create(mobileGalleryRef.current, {
+        bounds:mobGalCont.current,
+        type:'y',
+        throwProps:true,
+        inertia: true,
+        onPress: function() {
+          coordy = this.y
+        },
+      
+        onDragEnd: function(){
+  
+          
+            const dir = this.getDirection("velocity")
+            console.log(dir)
+            console.log(coordy)
+            
+            // let entirecoords = contcoord.getBoundingClientRect().height
+            let coordone = slides[0].getBoundingClientRect().height
+            let entirecoords = coordone * slides.length
+            console.log(entirecoords)
+            
+            console.log(move)
+            if(dir === "up" ) {
+              move = move + coordone
+              
+              gsap.to(mobileGalleryRef.current, {y: -move, duration: .75})  
+            } else if (dir === "down" &&  move !== entirecoords){
+              move = move - coordone
+            
+             gsap.to(mobileGalleryRef.current, {y: move, duration: .75})  
+
+
+            }
+            
+
+
+},
+ 
+        // liveSnap: {
+          
+        // y: function(endValue){
+        //     const coordone = slides[0].getBoundingClientRect().height
+            
+        //     console.log(entirecoords)
+        //     console.log(endValue)
+        //     return Math.round(endValue/ 100) * 100
+
+        //   }
+         
+        // }
+
+       
+      })
+*/

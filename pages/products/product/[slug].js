@@ -4,6 +4,7 @@ import Navbar from '../../../components/Navbar'
 import Carousel from '../../../components/Carousel'
 import TransitionContext from '../../../context/TransContext'
 const ProductDetails = () => {
+  const {mobGalCont} = useContext(TransitionContext)
 
   return (
       <>
@@ -12,7 +13,7 @@ const ProductDetails = () => {
 
 
     <div className='single-product'>
-        <div className='sp-carousel'>
+        <div ref={mobGalCont} className='sp-carousel'>
             <Carousel   />
 
 
