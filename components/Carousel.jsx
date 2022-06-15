@@ -4,7 +4,7 @@ import TransitionContext from '../context/TransContext'
 import Image from 'next/image'
 
 const Carousel = () => {
-    const { swatchRef, mobileGalleryRef ,setCurrenImgIndex, currentImgIndex} = useContext(TransitionContext)
+    const { s, swatchRef, mobileGalleryRef ,setCurrenImgIndex, currentImgIndex} = useContext(TransitionContext)
 
    
   const images = [
@@ -28,11 +28,7 @@ const Carousel = () => {
      
   ]
 
-  const s = (index) => {
-      console.log(index)
-    setCurrenImgIndex(index )
-
-  }
+ 
 
   return (
       <div>

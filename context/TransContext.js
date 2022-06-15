@@ -61,6 +61,9 @@ export const TransContext = ({children}) => {
     const { ref:secondSection , inView: secondSecVis, entry:entrySecond } = useInView();
     const { ref:thirdSectionRef , inView: thirdSecVis, entry:entryThird } = useInView();
 
+    const [progress, setProgress] = useState(0)
+
+
     useLayoutEffect(() => {
 
       gsap.fromTo(navbarRef.current, {y:'-100%', opacity:0 } , 
@@ -234,7 +237,11 @@ export const TransContext = ({children}) => {
        
          }, [thirdSecVis]) 
 
-       
+         const s = (index) => {
+          console.log(index)
+        setCurrenImgIndex(index )
+    
+      }
     useLayoutEffect(() => {
       
       let currentSwatch = 0
@@ -266,7 +273,8 @@ export const TransContext = ({children}) => {
         let offsetStartY = 0
         let offsetEndY = 0
         let prog = 0
-        let progress = parseFloat(prog.toFixed(4))
+
+        // let progress = parseFloat(prog.toFixed(4))
         let slideHeight = slides[0].getBoundingClientRect().height
         const sliderHeight = slideHeight * slides.length
         const sliderContainer = sliderHeight - slideHeight
@@ -276,7 +284,11 @@ export const TransContext = ({children}) => {
         const scrollHeight = mobGalCont.current.scrollHeight
         const offSetHeight = mobGalCont.current.offsetHeight
         const height = scrollHeight - offSetHeight
+  
         console.log(height)
+  
+
+     
    
     
 
@@ -284,7 +296,7 @@ export const TransContext = ({children}) => {
    
 
       Draggable.create(mobileGalleryRef.current, {
-        bounds: {maxY:0, minY: -height},
+        bounds: {maxY:0, minY:-height},
         type:'y',
         throwProps:true,
         inertia: true,
@@ -312,10 +324,11 @@ export const TransContext = ({children}) => {
 
            
             if(dir === "up" ) {
+              
               progress = offsetStartY + slideHeight
               
               gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85,  ease: Power3.easeOut})  
-              setCurrenImgIndex(currentSwatch)
+              s(currentSwatch)
             } else if (dir === "down" ){
               progress = progress - slideHeight
             
@@ -387,7 +400,8 @@ export const TransContext = ({children}) => {
             mobileGalleryRef, 
             currentImgIndex,
            setCurrenImgIndex,
-           mobGalCont
+           mobGalCont,
+           s
     
      
 
