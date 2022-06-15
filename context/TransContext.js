@@ -273,12 +273,17 @@ export const TransContext = ({children}) => {
         let offsetStartY = 0
         let offsetEndY = 0
         let prog = 0
-
+        let currentSlide = 0
+        let currentSwatch = 0
+        let nextSlide 
+        let prevSlide
+        let nextSwatch 
+        let prevSwatch 
         // let progress = parseFloat(prog.toFixed(4))
         let slideHeight = slides[0].getBoundingClientRect().height
         const sliderHeight = slideHeight * slides.length
         const sliderContainer = sliderHeight - slideHeight
-        console.log(sliderContainer)
+    
 
         console.log(galCont.getBoundingClientRect())
         const scrollHeight = mobGalCont.current.scrollHeight
@@ -293,10 +298,10 @@ export const TransContext = ({children}) => {
     
 
       gsap.registerPlugin(Draggable);
-   
+        
 
-      Draggable.create(mobileGalleryRef.current, {
-        bounds: {maxY:0, minY:-height},
+      Draggable.create(slides, {
+        bounds:{maxY:0, minY:-height},
         type:'y',
         throwProps:true,
         inertia: true,
@@ -304,11 +309,13 @@ export const TransContext = ({children}) => {
           offsetStartY = -this.startY
           offsetEndY = -this.EndY
           console.log(this)
+         
           
         
           
 
         },
+      
       
         onDragEnd: function(){
   
@@ -321,23 +328,78 @@ export const TransContext = ({children}) => {
   
            console.log(parseFloat(progress.toFixed(4)))
            
+          
+         let currentSlideId = this.target.getAttribute('containeriId')
+  
+         const swatchesIds = swatches.map(s => s.getAttribute('swatch'))
+         console.log(currentSlide, swatchesIds)
 
-           
-            if(dir === "up" ) {
-              
-              progress = offsetStartY + slideHeight
-              
-              gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85,  ease: Power3.easeOut})  
-              s(currentSwatch)
-            } else if (dir === "down" ){
-              progress = progress - slideHeight
+         let currentSwatchId = swatchesIds.find(id => id === currentSlideId)
+         currentSwatch = swatches.find(s => s.getAttribute('swatch') === currentSwatchId)
+         console.log(parseInt(currentSwatchId) + 1)
+         console.log(currentSlide)
+
+         currentSlide = slides.find(slide => slide.getAttribute('containeriId') === currentSwatchId)
+         console.log(currentSlide)
+         nextSlide = slides.find(slide => parseInt(slide.getAttribute('containeriId')) === parseInt(currentSwatchId) + 1)
+         console.log(nextSlide)
+         prevSlide = slides.find(slide => parseInt(slide.getAttribute('containeriId')) === parseInt(currentSwatchId) - 1)
+
+         nextSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(currentSwatchId) + 1)
+         console.log(nextSwatch)
+         prevSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(currentSwatchId) - 1)
+          
+         
+
+         if(dir === "up" && nextSlide != undefined) {
+           console.log(offsetStartY)
+           progress = offsetStartY + slideHeight
+             
+              nextSwatch.classList.add("active-swatch") 
+              currentSwatch.classList.remove("active-swatch") 
+              console.log(currentSwatch)
+              console.log(nextSwatch)
+               gsap.to(currentSlide, {y: -progress, duration: .85,  ease: Power3.easeOut})
+               gsap.to(nextSlide, {y: -progress, duration: .85,  ease: Power3.easeOut})
             
-             gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85, ease: Power3.easeOut})  
+          }
+          if(dir === "down" && prevSlide != undefined) {
+            currentSwatch.classList.remove("active-swatch") 
+            prevSwatch.classList.add("active-swatch") 
+            progress = offsetStartY - slideHeight
+            console.log(currentSwatch)
+            console.log(prevSwatch)
+            gsap.to(currentSlide, {y: -progress, duration: .85,  ease: Power3.easeOut})
+            gsap.to(prevSlide, {y: -progress, duration: .85,  ease: Power3.easeOut})
+           
+
+
+
+          }
+
+         
+
+         
+
+          
+           
+           
+            // if(dir === "up" ) {
+              
+            //   progress = offsetStartY + slideHeight
+            //   console.log(offsetStartY)
+            //   console.log(slideHeight)
+            //   gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85,  ease: Power3.easeOut})  
+            //   s(currentSwatch)
+            // } else if (dir === "down" ){
+            //   progress = progress - slideHeight
+            
+            //  gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85, ease: Power3.easeOut})  
          
             
 
 
-            }
+            // }
             
 
 
@@ -401,6 +463,7 @@ export const TransContext = ({children}) => {
             currentImgIndex,
            setCurrenImgIndex,
            mobGalCont,
+     
            s
     
      
