@@ -674,34 +674,43 @@ a {
 
 
   @include small() {
+   
       .sp-carousel {
       background-color: white;
       width: 100vw;
       height: 85vh ;
        overflow: hidden;
        clip-path: inset(10px  round 15px 15px 0 0);
+       background-color: blue;
    }
+ 
+ 
      .gallery {
        display: flex;
        flex-direction: column;
+
+       background-color: pink;
+     
+
        
     
   
-       align-self: flex-start;
+      //  align-self: flex-start;
+   
 
 
        .gallery-container {
 
          background-color: white;
-         width: 100vw;
+         width: 90vw;
          position: relative;
-         min-height: 85vh;
+         height:85vh;
      
          display: flex;
-          align-items: center;
-         justify-content: center;
+       
 
          img{
+          
            width: 100%;
            height: 100%;
            object-fit: cover;

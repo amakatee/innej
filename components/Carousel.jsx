@@ -36,10 +36,10 @@ const Carousel = () => {
 
   return (
       <div>
-    {/* <div className='gallery-mobile'> */}
+    {/* <div ref={galMobRef} className='gallery-mobile'> */}
    
       
-        <div ref={mobileGalleryRef}  className='gallery'>
+        <div  id="gallery" ref={mobileGalleryRef}  className='gallery'>
             {images.map((img, index) => (
              <div key={index} className='gallery-container' >
                  <img className='gal-img-mob' width={50} height={50} alt=""    
@@ -47,6 +47,7 @@ const Carousel = () => {
              </div>
                 
             ))}
+         
             
         </div>
         <div className='swatch-cont'>
@@ -60,7 +61,7 @@ const Carousel = () => {
             </div>
 
         </div>
-    {/* </div> */}
+  
     
 
     {/* <div className='gallery-desktop'>
