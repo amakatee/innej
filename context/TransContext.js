@@ -5,7 +5,7 @@ import {createContext, useRef, useEffect, useState} from "react"
 
 
 
-import { gsap,  Power3 } from "gsap"
+import { gsap,  Power3, TweenMax } from "gsap"
 import Draggable from "gsap/dist/Draggable";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -17,9 +17,17 @@ import {useLayoutEffect} from 'react'
 
 
 
+
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
+
+  /* desktop ref*/
+  const desctopGalleryRef = useRef()
+  const desctopGalSwatchesRef = useRef()
+  const slideD = gsap.utils.selector(desctopGalleryRef)
+  const sDesk = gsap.utils.selector(desctopGalSwatchesRef)
+  /*  desktop ref*/
    /* Products Page Refs*/
    const mobGalCont = useRef()
    const [currentImgIndex, setCurrenImgIndex] = useState(0)
@@ -61,8 +69,8 @@ export const TransContext = ({children}) => {
     const { ref:secondSection , inView: secondSecVis, entry:entrySecond } = useInView();
     const { ref:thirdSectionRef , inView: thirdSecVis, entry:entryThird } = useInView();
 
-    const [progress, setProgress] = useState(0)
-    let index = 0
+    // const [progress, setProgress] = useState(0)
+
    
 
     useLayoutEffect(() => {
@@ -250,34 +258,34 @@ export const TransContext = ({children}) => {
         const swatches = sw('.swatch', '.active-swatch')
         const slides = galleryCont('.gallery-container')
         const slideHeight = slides[0].getBoundingClientRect().height
-
+         console.log(slides)
         let nextSwatch
         let prevSwatch     
         let offSetStartY
-        let progress =0 
+        let progress = 0 
         console.log(swatches,slides)
 
-        swatches.forEach((swatch, index) => {
-           const coord = slides[index].getBoundingClientRect().top
+        // swatches.forEach((swatch, index) => {
+        //    const coord = slides[index].getBoundingClientRect().top
            
-           console.log(coord)
+        //    console.log(coord)
 
           
 
 
-        })
+        // })
 
-        const scrollHeight = mobGalCont.current.scrollHeight
-        const offSetHeight = mobGalCont.current.offsetHeight
-        const height = scrollHeight - offSetHeight
+       const scrollHeight = mobGalCont.current.scrollHeight
+       const offSetHeight = mobGalCont.current.offsetHeight
+       const height = scrollHeight - offSetHeight
 
         gsap.registerPlugin(Draggable);
         Draggable.create(mobileGalleryRef.current, {
-          bounds: {maxY: 0, minY: -height},
+          bounds: {maxY: 0, minY: -1600},
           type: 'y',
           onPress: function(e) {
               offSetStartY = -this.y
-              console.log(this)
+         
            },
 
           onDragEnd: function(e) {
@@ -309,7 +317,7 @@ export const TransContext = ({children}) => {
               nextSwatch.classList.add('active-swatch')
               currentSwatch.classList.remove('active-swatch')
 
-              gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85,  ease: Power3.easeOut})
+              TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35})
               
 
             }
@@ -321,7 +329,7 @@ export const TransContext = ({children}) => {
               prevSwatch.classList.add('active-swatch')
               currentSwatch.classList.remove('active-swatch')
 
-              gsap.to(mobileGalleryRef.current, {y: -progress, duration: .85,  ease: Power3.easeOut})
+              TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35 })
 
             }
 
@@ -331,176 +339,42 @@ export const TransContext = ({children}) => {
       }, [])
 
 
-
-  
-
-//     useLayoutEffect(() => {
-      
-//       let currentSwatch = 0
-//       const swatches = sw('.swatch, .active-swatch')
-//       const activeSwatch = sw('.active-swatch')
-//       const slides = galleryCont('.gallery-container')
-    
-
-//       swatches.forEach((swatch, index) => {
-//          const coord = slides[index].getBoundingClientRect().top
-//          console.log(coord)
-         
-//          swatch.addEventListener("click", e => {
-//            let swatchName = parseInt(e.target.getAttribute('swatch'))
-//            console.log(e)
-//            console.log(swatchName)
-         
-
-//            gsap.to(mobileGalleryRef.current, {y: -coord, duration: .75})
-//          })
-
+      useLayoutEffect(() => {
        
-        
+        console.log(slideD('.gal-img'))
+        console.log(sDesk('.desc-swatch'))
+        const deskSwatches = sDesk('.desc-swatch')
+        const slidesDesk = slideD('.gal-img')
+        console.log(deskSwatches)
+        let currentSwatch
+        let topIndex = 2
 
-//        const galCont = mobileGalleryRef.current
+        deskSwatches.forEach((swatch, index) => {
+          console.log(slidesDesk[index])
 
-    
-//         let offsetStartY = 0
-//         let offsetEndY = 0
-//         let prog = 0
-//         let currentSlide = 0
-//         let currentSwatch = 0
-//         let nextSlide 
-//         let prevSlide
-//         let nextSwatch 
-//         let prevSwatch 
-//         // let progress = parseFloat(prog.toFixed(4))
-//         let slideHeight = slides[0].getBoundingClientRect().height
-//         const sliderHeight = slideHeight * slides.length
-//         const sliderContainer = sliderHeight - slideHeight
-    
+          swatch.addEventListener("click", (e) => {
+            console.log(swatch)
+            let swatchName = swatch.getAttribute("swatch")
+            console.log(swatchName)
+            let closeUp = slidesDesk.find( slide => slide.dataset.index === swatchName)
+            console.log(closeUp)
+            if(currentSwatch === swatchName) return
+            gsap.set(closeUp, {zIndex:topIndex})
+            gsap.fromTo(closeUp, {opacity: 0}, {opacity: 1, duration: 1})
+            topIndex++
+            currentSwatch = swatchName
 
-//         console.log(galCont.getBoundingClientRect())
-//         const scrollHeight = mobGalCont.current.scrollHeight
-//         const offSetHeight = mobGalCont.current.offsetHeight
-//         const height = scrollHeight - offSetHeight
-  
-//         console.log(height)
-  
-
-     
-   
-    
-
-//       gsap.registerPlugin(Draggable);
-        
-
-//       Draggable.create(mobileGalleryRef.current, {
-//         bounds:{maxY:0},
-//         type:'y',
-//         throwProps:true,
-//         inertia: true,
-//         onPress: function(e) {
-//           offsetStartY = -this.startY
-//           offsetEndY = -this.EndY
-        
-         
-          
-        
-          
-
-//         },
-//         onDragEnd: function(){
-  
-//           const dir = this.getDirection("velocity")
-          
-      
-
-//          const sliderContainer = galCont.getBoundingClientRect().height
+          })
+        })
        
 
-//          console.log(parseFloat(progress.toFixed(4)))
-         
-        
-//        let currentSlideId = this.target.getAttribute('containeriId')
+      }, [])
 
-//        const swatchesIds = swatches.map(s => s.getAttribute('swatch'))
-//        console.log(currentSlide, swatchesIds)
 
-//        let currentSwatchId = swatchesIds.find(id => id === currentSlideId)
-//        currentSwatch = swatches.find(s => s.getAttribute('swatch') === currentSwatchId)
-//        console.log(parseInt(currentSwatchId) + 1)
-//        console.log(currentSlide)
 
-//        currentSlide = slides.find(slide => slide.getAttribute('containeriId') === currentSwatchId)
-//        console.log(currentSlide)
-//        nextSlide = slides.find(slide => parseInt(slide.getAttribute('containeriId')) === parseInt(currentSwatchId) + 1)
-//        console.log(nextSlide)
-//        prevSlide = slides.find(slide => parseInt(slide.getAttribute('containeriId')) === parseInt(currentSwatchId) - 1)
-
-//        nextSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(currentSwatchId) + 1)
-//        console.log(nextSwatch)
-//        prevSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(currentSwatchId) - 1)
-        
-       
   
 
-   
 
-
-
-
-//       console.log(slides[0])
-//       let offSetY = this.y
-//       let top = this.startY
-//       console.log(this)
-  
- 
-//           if(dir === "up" ) {
-//             offSetY = slideHeight
-//             top = top + offSetY
-//             if(offSetY = slideHeight ) {
-//               currentSlide = slides[0]
-//               gsap.to(mobileGalleryRef.current, {y: -top, duration: .85,  ease: Power3.easeOut})
-
-//               console.log(top)
-//             } 
-//             console.log(currentSlide)
-      
-//               // gsap.to(mobileGalleryRef.current, {y: -offSetY, duration: .85,  ease: Power3.easeOut})
-//               // gsap.to(nextSlide, {y: -offSetY, duration: .85,  ease: Power3.easeOut})
-
-         
-
-
-//           }
-
-        
-
-       
-
-       
-
-        
-         
-         
-          
-
-
-// },
-      
-      
- 
- 
-      
-
-       
-//       })
-
-//       })
-  
-     
-     
-     
-     
-//       console.log(mobileGalleryRef.current)
-//     }, [])
    
   
 
@@ -535,6 +409,7 @@ export const TransContext = ({children}) => {
             currentImgIndex,
            setCurrenImgIndex,
            mobGalCont,
+           desctopGalleryRef, desctopGalSwatchesRef,
      
            s
     

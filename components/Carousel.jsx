@@ -60,12 +60,7 @@ const Carousel = () => {
   
     
 
-    {/* <div className='gallery-desktop'>
-        <Image layout='fill' alt='' className='first-desk gal-img' src="/backimg-min.jpg"/>
-        <Image layout='fill' alt='' className='second-desk gal-img'  src="/backimg-min.jpg"/>
-        <Image layout='fill' alt='' className='third-desk gal-img' src="/backimg-min.jpg"/>
-
-    // </div> */}
+    
    </>
   )
 }
