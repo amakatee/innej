@@ -37,8 +37,8 @@ const Carousel = () => {
       
         <div  id="gallery" ref={mobileGalleryRef}  className='gallery'>
             {images.map((img, index) => (
-             <div key={index} containeriId={index} className='gallery-container' >
-                 <img className='gal-img-mob' width={50} height={50} alt=""    
+             <div key={index} data-id={index} containeriId={index} className='gallery-container' >
+                 <img data-id={index} className='gal-img-mob' width={50} height={50} alt=""    
           src={img.url}/>
              </div>
                 
@@ -49,7 +49,7 @@ const Carousel = () => {
         <div className='swatch-cont'>
             <div ref={swatchRef} className='swatches'>
                 {images.map((img, index) => (
-                  <span key={index} onClick={() => s(index)}  className={currentImgIndex === index ? 'active-swatch swatch' : 'swatch' } swatch={index}>{index}</span>
+                  <span key={index}   className={currentImgIndex === index ? 'active-swatch swatch' : 'swatch' } swatch={index}></span>
 
                 ))}
                     

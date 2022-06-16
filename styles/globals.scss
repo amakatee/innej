@@ -680,7 +680,7 @@ a {
         position: relative;
       background-color: white;
       width: 100vw;
-      height: 80vh ;
+      height: 83vh ;
        overflow: hidden;
        clip-path: inset(10px  round 15px 15px 0 0);
     
@@ -711,7 +711,7 @@ a {
       
          width: 100vw;
          position: relative;
-         height:80vh;
+         height:83vh;
      
          display: flex;
 
@@ -794,19 +794,19 @@ a {
         flex-direction: column;
         justify-content:space-around;
         align-items: center;
-        gap: .4rem;
+        gap: .5rem;
        
         .swatch {
-          width: .6em;
-          height: .6rem;
+          width: 4px;
+          height: 4px;
           border-radius: 100%;
-          background-color: rgba(243, 243, 243, 0.753);
+          background-color: rgb(255, 255, 255);
         }
         .active-swatch {
-          width: .7rem;
-          height: .7rem;
+          width: 5px;
+          height: 5px;
           border-radius: 100%;
-          background-color: rgba(49, 49, 49, 0.945) ;
+          background-color: rgb(49, 49, 49) ;
           transition: .3s ease;
 
         }
