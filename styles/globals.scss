@@ -682,47 +682,41 @@ a {
         position: relative;
       background-color: white;
       width: 100vw;
-      height: 83vh ;
+      height: 83vh;
+ 
        overflow: hidden;
        clip-path: inset(10px  round 15px 15px 0 0);
+       background-color: #343434;
     
+   }
+
+   .desk-swatches {
+     display: none;
    }
  
  
      .gallery {
+ 
       
        display: flex;
-      flex-direction: column;
-    
-  
-
-
-
-     
-
-       
-    
-  
+       flex-direction: column;
+ 
        align-self: flex-start;
-   
-
-
+     
+     
        .gallery-container {
-
-
-      
          width: 100vw;
          position: relative;
-         height:83vh;
-     
+        height:83vh;
          display: flex;
-    
-
        
-
+   
+    
+         user-select: none;
+        
+     
          img{
-           
-         
+     
            width: 100%;
            height: 100%;
            object-fit: cover;
@@ -731,7 +725,11 @@ a {
        }
        
      }
-
+ 
+    .grabbing {
+      cursor: grabbing;
+    }
+  
   
     
 
@@ -779,7 +777,9 @@ a {
      z-index: 100;
 
      .desk-main {
-       width: 94vw;
+       width: 96vw;
+       z-index: 1000;
+       background-color: white;
      
        margin: auto;
        display: flex;
@@ -789,6 +789,7 @@ a {
 
        .product-desk-title {
          width: 100%;
+         padding-top: .4rem;
          display: flex;
          align-items: center;
          justify-content: space-between;
@@ -1045,6 +1046,172 @@ a {
   .gallery-desktop {
     display: none;
  } 
+ .sp-desc {
+  background-color: white;
+  margin-top: -2rem;
+  z-index: 100;
+
+  .desk-main {
+    width: 96vw;
+    z-index: 1000;
+    background-color: white;
+  
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    .product-desk-title {
+      width: 100%;
+      padding-top: .4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1{
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 280;
+        letter-spacing: .6px;
+      }
+      p{
+       font-size: 1rem;
+       text-transform: uppercase;
+       font-weight: 280;
+       letter-spacing: .6px;
+
+      }
+    }
+    .product-desc {
+   
+      padding-block: .5rem;
+      margin-block: .5rem;
+      font-size: .8rem;
+      font-weight: 280;
+      letter-spacing: .4px;
+    }
+    .color-size {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      gap: 1rem;
+
+      .color {
+        display:flex;
+        flex-direction: column;
+    
+        justify-content: space-around;
+
+        h3{
+          font-weight: 250;
+       
+            font-size: .7rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+
+          
+
+        }
+
+        .color-span 
+        {
+          display: flex;
+          gap: .5rem;
+          span {
+           width: 1rem;
+           height: 1rem;
+           background-color: #006400;
+           border-radius: 50%;
+           &:hover {
+             border: 1px solid grey;
+           }
+         }
+
+        }
+
+     
+      }
+
+      .size{
+        display: flex;
+        flex-direction: column;
+ 
+
+        h3{
+         font-weight: 250;
+       
+         font-size: .7rem;
+         letter-spacing: 1.2px;
+         text-transform: uppercase;
+
+        }
+        .size-span {
+          display: flex;
+          gap: .5rem;
+          span {
+            background-color: rgb(221, 221, 221);
+            width: 1.9em;
+            text-align: center;
+            padding-block: .8em;
+            font-size: .8rem;
+            font-weight: 250;
+            &:hover {
+              background-color: #343434;
+              color: white;
+              transition: .6s ease;
+            }
+         
+          }
+        }
+      }
+    }
+
+    .add-to-cart-desc {
+      
+      padding: 1.3em 6em;
+      border: 1px solid $text-color;
+      font-weight:300;
+      text-transform: uppercase;
+      font-size: .7rem;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+      &:hover {
+        color: white;
+        background-color: $text-color;
+        border: none;
+        transition: .6s ease;
+      }
+    }
+    .care-section {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      .care-info {
+        width: 50vw;
+        border-bottom: 1px solid $text-color;
+        padding-block: 1rem;
+        
+        h1{
+          font-size: .9rem;
+          text-transform: uppercase;
+          font-weight: 350;
+          letter-spacing: .6px;
+        }
+        p {
+          font-size: .8rem;
+          letter-spacing: .8px;
+          font-weight: 250;
+
+
+        }
+
+      }
+    }
+  }
+}
     
 
    }

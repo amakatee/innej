@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import TransitionContext from '../context/TransContext'
 
 const ProductsDesc = () => {
+    const {producrDeslRef} = useContext(TransitionContext)
   return (
-    <div className='desk-main'>
+    <div ref={producrDeslRef} className='desk-main'>
         <div className='product-desk-title'>
             <h1>Dress</h1>
             <p>$30</p>

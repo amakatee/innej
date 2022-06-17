@@ -1,11 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const ProductIcon = () => {
+  const router = useRouter()
   return (
-    <Link href="/products/product/slug">
-    <div className='prodcut-i-cart'>
+
+    <div onClick={() => router.push('/products/product/slug')} className='prodcut-i-cart'>
       <div className='product-i-img'> 
       <Image layout='fill' alt='' src='/backimg-min.jpg'/> 
       </div>
@@ -15,7 +17,7 @@ const ProductIcon = () => {
       </div>
 
     </div>
-    </Link>
+   
   )
 }
 

@@ -21,6 +21,7 @@ import {useLayoutEffect} from 'react'
 const TransitionContext = createContext()
 
 export const TransContext = ({children}) => {
+  const producrDeslRef = useRef()
 
   /* desktop ref*/
   const desctopGalleryRef = useRef()
@@ -71,7 +72,7 @@ export const TransContext = ({children}) => {
 
     // const [progress, setProgress] = useState(0)
 
-   
+ 
 
     useLayoutEffect(() => {
 
@@ -252,93 +253,93 @@ export const TransContext = ({children}) => {
     
       }
 
-   const [slide, setCurrentSlide] = useState()
+  
    const [swatch, setCurrentSwatch] = useState()
-      useLayoutEffect(() => {
-        const swatches = sw('.swatch', '.active-swatch')
-        const slides = galleryCont('.gallery-container')
-        const slideHeight = slides[0].getBoundingClientRect().height
-         console.log(slides)
-        let nextSwatch
-        let prevSwatch     
-        let offSetStartY
-        let progress = 0 
-        console.log(swatches,slides)
+      // useLayoutEffect(() => {
+      //   const swatches = sw('.swatch', '.active-swatch')
+      //   const slides = galleryCont('.gallery-container')
+      //   const slideHeight = slides[0].getBoundingClientRect().height
+      //    console.log(slides)
+      //   let nextSwatch
+      //   let prevSwatch     
+      //   let offSetStartY
+      //   let progress = 0 
+      //   console.log(swatches,slides)
 
-        // swatches.forEach((swatch, index) => {
-        //    const coord = slides[index].getBoundingClientRect().top
+      //   // swatches.forEach((swatch, index) => {
+      //   //    const coord = slides[index].getBoundingClientRect().top
            
-        //    console.log(coord)
+      //   //    console.log(coord)
 
           
 
 
-        // })
+      //   // })
 
-       const scrollHeight = mobGalCont.current.scrollHeight
-       const offSetHeight = mobGalCont.current.offsetHeight
-       const height = scrollHeight - offSetHeight
+      //  const scrollHeight = mobGalCont.current.scrollHeight
+      //  const offSetHeight = mobGalCont.current.offsetHeight
+      //  const height = scrollHeight - offSetHeight
 
-        gsap.registerPlugin(Draggable);
-        Draggable.create(mobileGalleryRef.current, {
-          bounds: {maxY: 0, minY: -1600},
-          type: 'y',
-          onPress: function(e) {
-              offSetStartY = -this.y
+      //   gsap.registerPlugin(Draggable);
+      //   Draggable.create(mobileGalleryRef.current, {
+      //     bounds: {maxY: 0, minY: -1600},
+      //     type: 'y',
+      //     onPress: function(e) {
+      //         offSetStartY = -this.y
          
-           },
+      //      },
 
-          onDragEnd: function(e) {
-            const dir = this.getDirection("velocity")
-            console.log(dir)
-            let slideId = e.target.dataset.id
-            const currentSlide = slides.find(slide => slide.dataset.id === slideId)
-            console.log(currentSlide)
-            const currentSwatch = swatches.find(swatch => swatch.getAttribute('swatch') === slideId)
-            nextSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(slideId) + 1)
-            prevSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(slideId) - 1)
-            console.log(nextSwatch)
-            console.log(currentSwatch)
-            setCurrentSlide(slideId)
-            setCurrentSwatch(currentSwatch)
+      //     onDragEnd: function(e) {
+      //       const dir = this.getDirection("velocity")
+      //       console.log(dir)
+      //       let slideId = e.target.dataset.id
+      //       const currentSlide = slides.find(slide => slide.dataset.id === slideId)
+      //       console.log(currentSlide)
+      //       const currentSwatch = swatches.find(swatch => swatch.getAttribute('swatch') === slideId)
+      //       nextSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(slideId) + 1)
+      //       prevSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === parseInt(slideId) - 1)
+      //       console.log(nextSwatch)
+      //       console.log(currentSwatch)
+      //       setCurrentSlide(slideId)
+      //       setCurrentSwatch(currentSwatch)
            
               
-            console.log(height, offSetHeight)
+      //       console.log(height, offSetHeight)
            
-            console.log(scrollHeight)
+      //       console.log(scrollHeight)
 
 
-           console.log(slideId)
-            if(dir === "up" && nextSwatch != undefined) {
+      //      console.log(slideId)
+      //       if(dir === "up" && nextSwatch != undefined) {
              
-              progress = offSetStartY + slideHeight
+      //         progress = offSetStartY + slideHeight
        
           
-              nextSwatch.classList.add('active-swatch')
-              currentSwatch.classList.remove('active-swatch')
+      //         nextSwatch.classList.add('active-swatch')
+      //         currentSwatch.classList.remove('active-swatch')
 
-              TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35})
+      //         TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35})
               
 
-            }
-            console.log(progress)
+      //       }
+      //       console.log(progress)
 
-            if(dir === "down" && prevSwatch != undefined) {
-              progress = progress - slideHeight
+      //       if(dir === "down" && prevSwatch != undefined) {
+      //         progress = progress - slideHeight
 
-              prevSwatch.classList.add('active-swatch')
-              currentSwatch.classList.remove('active-swatch')
+      //         prevSwatch.classList.add('active-swatch')
+      //         currentSwatch.classList.remove('active-swatch')
 
-              TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35 })
+      //         TweenMax.to(mobileGalleryRef.current, {y: -progress, duration: .35 })
 
-            }
+      //       }
 
-          }
-        })
+      //     }
+      //   })
          
-      }, [])
+      // }, [])
 
-
+    
       useLayoutEffect(() => {
        
         console.log(slideD('.gal-img'))
@@ -370,6 +371,33 @@ export const TransContext = ({children}) => {
 
       }, [])
 
+  
+      // useLayoutEffect(() => {
+      //   gsap.registerPlugin(Draggable);
+      //   Draggable.create(producrDeslRef.current, {
+      //     type: 'y',
+      //     // bounds: mobGalCont.current,
+      //    bounds: {minY:0},
+      //     onPress: function() {
+      //       console.log(this)
+
+      //     },
+      //     onDragEnd: function(e){ 
+         
+      //       console.log(e)
+      //       const dir = this.getDirection("velocity")
+      //       console.log(this)
+
+      //       if(dir === "up"){
+      //         console.log("up")
+
+      //       }
+      //     }
+      //   })
+
+
+       
+      // })
 
 
   
@@ -409,7 +437,7 @@ export const TransContext = ({children}) => {
             currentImgIndex,
            setCurrenImgIndex,
            mobGalCont,
-           desctopGalleryRef, desctopGalSwatchesRef,
+           desctopGalleryRef, desctopGalSwatchesRef,producrDeslRef,
      
            s
     
