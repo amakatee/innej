@@ -89,7 +89,7 @@ const Carousel = () => {
              console.log(currentPos)
           
               
-              TweenMax.to(slider, {y: currentPos , duration: 0.3})
+              TweenMax.to(slider, {y: currentPos , duration: .9})
               currentIndex++
               swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
               nextSwatch?.classList.add('active-swatch')
@@ -99,7 +99,7 @@ const Carousel = () => {
 
           if(velocity === 'down') {
             currentPos = this.y + slideHeight
-            TweenMax.to(slider, {y: currentPos , duration: 0.3})
+            TweenMax.to(slider, {y: currentPos , duration: 0.9})
             currentIndex--
             
             
