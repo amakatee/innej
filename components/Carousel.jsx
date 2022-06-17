@@ -85,6 +85,8 @@ const Carousel = () => {
             if(velocity === "up" && nextSwatch != undefined) {
           
              currentPos = this.y - slideHeight
+             console.log(this.y)
+             console.log(currentPos)
           
               
               TweenMax.to(slider, {y: currentPos , duration: 0.45, ease:Power0.easeInOut})
