@@ -679,14 +679,13 @@ a {
    
       .sp-carousel {
        
-        position: relative;
+      position: relative;
       background-color: white;
       width: 100vw;
       height: 83vh;
- 
-       overflow: hidden;
-       clip-path: inset(10px  round 15px 15px 0 0);
-       background-color: #343434;
+      overflow: hidden;
+      clip-path: inset(10px  round 15px 15px 0 0);
+    
     
    }
 
@@ -700,7 +699,7 @@ a {
       
        display: flex;
        flex-direction: column;
- 
+       transition: all .5s ease;
        align-self: flex-start;
      
      
@@ -961,6 +960,9 @@ a {
      clip-path: inset(10px  round 15px 15px 0 0);
   
  }
+ .desk-swatches {
+  display: none;
+}
 
 
    .gallery {
