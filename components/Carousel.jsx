@@ -6,21 +6,147 @@ import gsap from 'gsap'
 import {TweenMax, Power0} from 'gsap'
 import Draggable from "gsap/dist/Draggable";
 
+
 const Carousel = () => {
     const { mobGalCont, currentImgIndex} = useContext(TransitionContext)
     const [slide, setSlide] = useState(true)
     const mobileGalleryRef = useRef()
     const swatchRef = useRef()
 
+
+    //  useEffect(() => {
+
+    //   let isDragging = false
+    //   let startPos = 0
+    //   let currentTranslate = 0
+    //   let prevTranslate = 0 
+    //   let animationID
+    //   let currentIndex = 0 
+      
+    //   const gallery = mobileGalleryRef.current
+    //   const slides = [...mobileGalleryRef.current.children]
+    //   console.log(slides)
+
+    //   slides.forEach((slide, index) => {
+
+    //     //Touch
+    //     gallery.addEventListener('touchstart', touchStart(index))
+    //     gallery.addEventListener('touchend', touchEnd)
+    //     gallery.addEventListener('touchmove', touchMove)
+
+    //     //Move
+    //     gallery.addEventListener('mousedown', touchStart(index))
+    //     gallery.addEventListener('mouseup', touchEnd)
+    //     gallery.addEventListener('mouseleave', touchEnd)
+    //     gallery.addEventListener('mousemove', touchMove)
+
+
+       
+    //   })
+
+    //   // window.oncontextmenu = function(e) {
+    //   //   e.preventDefault()
+    //   //   e.stopPropagation()
+    //   //   return false
+
+    //   // }
+
+    //   function touchStart(index){
+    //     return function(e) {
+    //       currentIndex = index
+    //       startPos =  getcurrentPositionY(e)
+    //       console.log(startPos)
+    //       isDragging = true
+
+    //       animationID = requestAnimationFrame(animation)
+    //     }
+    //   }
+    //   function touchEnd(){
+   
+    //     isDragging = false
+    //     cancelAnimationFrame(animationID)
+
+    //     const movedBy = currentTranslate - prevTranslate
+    //     if(movedBy < -100 && currentIndex < slides.length - 1)
+    //     currentIndex += 1 
+
+    //     if(movedBy > 100 && currentIndex > 0)
+    //     currentIndex -= 1 
+
+    //     setPositionByIndex()
+
+    //   }
+    //   function touchMove(e){
+  
+    //     if(isDragging){
+    //      const currentPosition = getcurrentPositionY(e)
+    //      currentTranslate = prevTranslate + currentPosition - startPos
+    //     }
+
+    //   }
+    //   function animation() {
+    //     setSliderPosition()
+    //     if(isDragging) requestAnimationFrame(animation)
+
+    //   }
+
+    //   function setSliderPosition() {
+    //     console.log(currentTranslate)
+    //     console.log(prevTranslate)
+    //     gallery.style.transform = `translateY(${currentTranslate}px)`
+
+    //   }
+    //   function getcurrentPositionY(e){
+    //     return e.type.includes('mouse') ? e.pageY : e.clientY
+
+    //   }
+
+    //   function setPositionByIndex(){
+    //     currentTranslate = currentIndex * -window.innerHeight
+    //     prevTranslate = currentTranslate
+    //     setSliderPosition()
+    //   }
+
+
+    //   return () => gallery.removeEventListener('touchstart', touchStart)
+
+     
+    //  }, [])
+
+    const [resizedGallery , setResize] = useState()
     
     useEffect(() => {
    
       const slider = mobileGalleryRef.current
-      console.log(slider)
+
       const slides = gsap.utils.selector(mobileGalleryRef)('.gallery-container')
-      console.log(slides)
+
       const slideHeight = slides[0].getBoundingClientRect().height
+
+     function setParameters() {
+      slides.forEach(slide => {
+        slide.style.height = `${slideHeight}px`
+      })
+
+     }
+    
+      resizeGallery()
+
+      function setEvents() {
+        setResize(debounce(resizeGallery))
+        window.addEventListener('resize', debounce(resizeGallery))
+
+      }
+     
+     
       
+
+      function resizeGallery() {
+        console.log("11")
+        setParameters()
+      }
+
+
 
       const swatches = gsap.utils.selector(swatchRef)('.swatch')
       console.log(swatches)
@@ -79,44 +205,50 @@ const Carousel = () => {
           },
           onDragStart: function() {
             console.log('dragStart')
-
-            velocity = this.getDirection("velocity")
-            console.log(velocity)
-            if(velocity === "up" && nextSwatch != undefined) {
-          
-             currentPos = this.y - slideHeight
-             console.log(this.y)
-             console.log(currentPos)
-          
-              
-              TweenMax.to(slider, {y: currentPos , duration: .9})
-              currentIndex++
-              swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
-              nextSwatch?.classList.add('active-swatch')
-              
-          }
+            this.startY = this.y
          
-
-          if(velocity === 'down') {
-            currentPos = this.y + slideHeight
-            TweenMax.to(slider, {y: currentPos , duration: 0.9})
-            currentIndex--
-            
-            
-            swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
-            prevSwatch?.classList.add('active-swatch')
-
-          }
-
-          
-          
+      
+            velocity = this.getDirection("velocity")
 
   
           },
           onDrag:function() {
-       
-            console.log('onDrug')
-            console.log(this)
+        
+
+         
+
+            if(velocity === "up" && nextSwatch != undefined) {
+          
+              // currentPos = this.y - slideHeight
+              this.y = this.startY
+              currentPos = -this.y  + slideHeight
+
+              console.log(this.y)
+              console.log(this.startY)
+              console.log(this)
+        
+              console.log(currentPos)
+           
+               
+               TweenMax.to(slider, {y: -currentPos , duration: .6})
+               currentIndex++
+               swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
+               nextSwatch?.classList.add('active-swatch')
+               
+           }
+          
+ 
+           if(velocity === 'down') {
+             this.y = this.startY
+             currentPos = this.y + slideHeight
+             TweenMax.to(slider, {y: currentPos , duration: 0.6})
+             currentIndex--
+             
+             
+             swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
+             prevSwatch?.classList.add('active-swatch')
+ 
+           }
             
       
            
@@ -132,6 +264,20 @@ const Carousel = () => {
           }
           
         })
+
+        return () => {
+          window.removeEventListener('resize', debounce(resizeGallery))
+
+        }
+
+        function debounce(func, time =100){
+          let timer
+          return function (event) {
+            clearTimeout(timer)
+            timer = setTimeout(func, time, event)
+          }
+  
+        }
          
       
      }, [])
@@ -161,20 +307,11 @@ const Carousel = () => {
    ]
 
 
-
-
-
-
- 
-
-
- 
-
   return (
       <>
    
       
-        <div  id="gallery" ref={mobileGalleryRef}  className='gallery'>
+        <div  id="gallery" ref={mobileGalleryRef} draggable="true" className='gallery'>
             {images.map((img, index) => (
              <div key={index} data-id={index} containeriId={index} className='gallery-container' >
                  <img data-id={index} className='gal-img-mob' width={50} height={50} alt=""    

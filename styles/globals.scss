@@ -24,7 +24,10 @@ body {
   font-family: Helvetica Neue, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif;
 }
-
+a {
+  text-decoration: none;
+  color: $text-color;
+}
 
 /*Navbar*/
 
@@ -720,6 +723,7 @@ a {
            width: 100%;
            height: 100%;
            object-fit: cover;
+           transition: transform 0.3s ease-in-out;
          }
          
        }
@@ -1315,14 +1319,191 @@ a {
    
  
     
+    // .sp-desc {
+    //   flex: 1;
+    //   display: grid;
+    //   place-content: center;
+     
+    //   background-color: blue;
+     
+     
+    // }
     .sp-desc {
       flex: 1;
+    background-color: rgba(255, 255, 255, 0);
+   
+
+
+      z-index: 100;
       display: grid;
       place-content: center;
+ 
+      .desk-main {
+      width: 70%;
+      margin: auto;
+
+ 
+        .product-desk-title {
+        
+          width: 100%;
+          padding-top: .4rem;
+          display: flex;
+          flex-direction: column;
+         
+         
+ 
+          h1{
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: 280;
+            letter-spacing: .6px;
+         
+           margin-bottom:  -10px;
+          }
+          p{
+           font-size: 1.2rem;
+           text-transform: uppercase;
+           font-weight: 280;
+           letter-spacing: .6px;
+           
+      
      
-      background-color: blue;
+      
+ 
+          }
+        }
+        .product-desc {
+       
+          padding-block: .5rem;
+          margin-block: .5rem;
+          font-size: .8rem;
+          font-weight: 280;
+          letter-spacing: .4px;
+        }
+        .color-size {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          margin-bottom: 2rem;
+          gap: 1rem;
+ 
+          .color {
+            display:flex;
+            flex-direction: column;
+        
+            justify-content: space-around;
+ 
+            h3{
+              font-weight: 250;
+           
+                font-size: .7rem;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+ 
+              
+ 
+            }
+ 
+            .color-span 
+            {
+              display: flex;
+              gap: .5rem;
+              span {
+               width: 1.2rem;
+               height: 1.2rem;
+               cursor: pointer;
+               background-color: #828f82;
+               border-radius: 50%;
+               &:hover {
+                 border: 2px solid $text-color;
+               }
+             }
+ 
+            }
+ 
+         
+          }
+ 
+          .size{
+            display: flex;
+            flex-direction: column;
      
-     
+ 
+            h3{
+             font-weight: 250;
+           
+             font-size: .7rem;
+             letter-spacing: 1.2px;
+             text-transform: uppercase;
+ 
+            }
+            .size-span {
+              display: flex;
+              gap: .5rem;
+              span {
+                background-color: rgb(221, 221, 221);
+                width: 1.9em;
+                text-align: center;
+                padding-block: .8em;
+                cursor: pointer;
+                font-size: .8rem;
+                font-weight: 250;
+                &:hover {
+                  background-color: #343434;
+                  color: white;
+                  transition: .6s ease;
+                }
+             
+              }
+            }
+          }
+        }
+ 
+        .add-to-cart-desc {
+          display: inline-block;
+          
+          padding: 1.3em 6em;
+          border: 1px solid $text-color;
+          font-weight:300;
+          text-transform: uppercase;
+          font-size: .7rem;
+          letter-spacing: 1px;
+          margin-bottom: 2rem;
+          cursor: pointer;
+          &:hover {
+            color: white;
+            background-color: $text-color;
+            border: none;
+            transition: .6s ease;
+          }
+        }
+        .care-section {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 2rem;
+          gap: 1rem;
+          .care-info {
+            width: 40vw;
+            border-bottom: 1px solid $text-color;
+            padding-block: 1rem;
+            
+            h1{
+              font-size: .9rem;
+              text-transform: uppercase;
+              font-weight: 350;
+              letter-spacing: .6px;
+            }
+            p {
+              font-size: .8rem;
+              letter-spacing: .8px;
+              font-weight: 250;
+ 
+ 
+            }
+ 
+          }
+        }
+      }
     }
 
    }
