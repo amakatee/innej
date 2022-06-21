@@ -138,7 +138,7 @@ export const TransContext = ({children}) => {
                  })
                 //  tlSecond.fromTo(secondText.current, {y: "-100%", opacity: 0}, {y: "y:0%", opacity:1,  stagger: 1, duration: 1})
 
-                 tlSecond.fromTo(q(".highlite"), {color: "rgba(0,100,0, 0.2"}, {color: "rgba(0,100,0, 1", stagger: 1})
+                 tlSecond.fromTo(q(".highlite"), {color: "rgba(rgba(52,52,52, 0.2)"}, {color: "rgba(rgba(52,52,52, 1)", stagger: 1})
                  tlSecond.fromTo(fairyRef.current, { y: "-60%" }, {y: "0%" , delay:.4} )
 
 
@@ -161,7 +161,7 @@ export const TransContext = ({children}) => {
                    }
                 })
 
-               tlRemove.to(q(".highlite"),{color: "rgba(0,100,0, .2", stagger: 1})
+               tlRemove.to(q(".highlite"),{color: "rgba(52,52,52 0.2", stagger: 1})
 
                const tlParalax= gsap.timeline({
                 scrollTrigger: {
@@ -169,6 +169,7 @@ export const TransContext = ({children}) => {
                 
                     scrub: true,
                     start: "20%",
+
                     end: "70%",
                }
             })

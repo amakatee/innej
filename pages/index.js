@@ -150,11 +150,12 @@ export default function Home() {
         {/* <div className={styles.video__cont}> */}
         <video ref={thirdVideoRef} className={styles.video__third}  muted={true} autoPlay={true} playsInline controls={false} >
             <source
-            src='/backvideo.mp4'
+            src='/bottom-vid.mp4'
             type='video/mp4'
             >
             </source>
           </video>
+          <div className={styles.bottom_overlay}></div>
 {/* 
         </div > */}
         <div ref={thirdVideoText} className={styles.third__info}>
