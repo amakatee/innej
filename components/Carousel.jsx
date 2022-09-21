@@ -260,10 +260,10 @@ const Carousel = () => {
             >
              
               {images.map((img, index) => (
-                <SwiperSlide className='gallery-container'>
+                <SwiperSlide  key={index} className='gallery-container'>
              <div key={index} data-id={index} containeriId={index} className='gallery-container' >
                
-                 <img data-id={index} className='gal-img-mob' width={50} height={50} alt=""    
+                 <img  data-id={index} className='gal-img-mob' width={50} height={50} alt=""    
           src={img.url}/>
              </div>
              </SwiperSlide>
