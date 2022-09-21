@@ -1,10 +1,13 @@
 import React, { useEffect, useRef} from 'react'
 import { useContext, useState } from 'react'
 import TransitionContext from '../context/TransContext'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import {TweenMax, Power0} from 'gsap'
 import Draggable from "gsap/dist/Draggable";
+import {Navigation, EffectFade}  from "swiper"
+import 'swiper/css/navigation'
 
 
 const Carousel = () => {
@@ -217,12 +220,14 @@ const Carousel = () => {
       },
       {
         id: "2",
-        url: "/shoes.jpg"
-      },
-      {
-        id: "3",
         url: "/backimg-min.jpg"
     },
+
+    {
+      id: "3",
+      url: "/shoes.jpg"
+    },
+    
      
    ]
 
@@ -230,18 +235,46 @@ const Carousel = () => {
   return (
       <>
    
-      
-        <div  id="gallery" ref={mobileGalleryRef} draggable="true" className='gallery'>
-            {images.map((img, index) => (
+  
+            {/* {images.map((img, index) => (
              <div key={index} data-id={index} containeriId={index} className='gallery-container' >
                  <img data-id={index} className='gal-img-mob' width={50} height={50} alt=""    
           src={img.url}/>
              </div>
                 
+            ))} */}
+            <Swiper
+            className='gallery'
+     
+            modules={[Navigation]}
+            navigation
+            effect
+            slidesPerView={1}
+          
+            
+            speed={800}
+            direction="vertical"
+           
+            
+
+            >
+             
+              {images.map((img, index) => (
+                <SwiperSlide className='gallery-container'>
+             <div key={index} data-id={index} containeriId={index} className='gallery-container' >
+               
+                 <img data-id={index} className='gal-img-mob' width={50} height={50} alt=""    
+          src={img.url}/>
+             </div>
+             </SwiperSlide>
+                
             ))}
+           
+
+            </Swiper>
          
             
-        </div>
+     
         <div className='swatch-cont'>
             <div ref={swatchRef} className='swatches'>
                 {images.map((img, index) => (
