@@ -115,172 +115,92 @@ const Carousel = () => {
 
     const [resizedGallery , setResize] = useState()
     
-    useEffect(() => {
-   
-      const slider = mobileGalleryRef.current
-
-      const slides = gsap.utils.selector(mobileGalleryRef)('.gallery-container')
-
-      const slideHeight = slides[0].getBoundingClientRect().height
-
-     function setParameters() {
-      slides.forEach(slide => {
-        slide.style.height = `${slideHeight}px`
-      })
-
-     }
-    
-      resizeGallery()
-
-      function setEvents() {
-        setResize(debounce(resizeGallery))
-        window.addEventListener('resize', debounce(resizeGallery))
-
-      }
-     
-     
-      
-
-      function resizeGallery() {
-        console.log("11")
-        setParameters()
-      }
 
 
 
-      const swatches = gsap.utils.selector(swatchRef)('.swatch')
-      console.log(swatches)
-    
-   
-      let height = slides[0].getBoundingClientRect().height * slides.length
-      console.log(height)
-
-      let mainGalleryContHeight = mobGalCont.current.scrollHeight - mobGalCont.current.offsetHeight
-      
-      let isDragging = false,
-      startPos = 0,
-      currentTranslate = 0,
-      prevTranslate = 0,
-      animationID = 0,
-      currentSwatch ,
-      currentSlide,
-      currentIndex = 0,
-      velocity,
-      nextSwatch,
-      prevSwatch,
-      currentPos
-
-     
-        gsap.registerPlugin(Draggable) 
-        Draggable.create(slider, {
-          type: 'y',
-          bounds: {maxY: 0, minY:-mainGalleryContHeight },
-          onPress:function(e) {
-
-         
-            console.log(this)
-            currentIndex = parseInt(e.target.dataset.id)
-            console.log(currentIndex)
-
-
-            const slidesId = slides.map(slide => parseInt(slide.dataset.id))
-            let currentSlideIndex = slidesId.find(id => id === currentIndex)
-            currentSlide = slides.find(slide => parseInt(slide.dataset.id) === currentSlideIndex )
-            console.log(currentSlide)
-            
-             const swatchAttributes = swatches.map(swatch => parseInt(swatch.getAttribute('swatch'))) 
-             let currentSwatchIndex = swatchAttributes.find(index=> index === currentIndex)
-      
-             currentSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) ===currentSwatchIndex )
-             console.log(currentSwatch)
-             nextSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === currentSwatchIndex + 1 )
-             prevSwatch = swatches.find(swatch => parseInt(swatch.getAttribute('swatch')) === currentSwatchIndex - 1 )
-
-            // currentSwatch = currentIndex
-
-
-            // console.log(e.clientY)
-
-
-          },
-          onDragStart: function() {
-            console.log('dragStart')
-            this.startY = this.y
-         
-      
-            velocity = this.getDirection("velocity")
-
+    const [size, setSize] = useState()
+    const [slideHeight, setSlideHeight] = useState()
+    // useEffect(() => {
   
-          },
-          onDrag:function() {
+
+      
+  //     const gallery = mobileGalleryRef.current
+  //     const coordContainer = gallery.getBoundingClientRect().height
+  //     const slides = [...gallery.children]
+  //     let slideHeight
+  //      const size = slides.length - 1
+  //     setSize(slides.length - 1)
+  //     let currentSlide = 0
+  //     let height
+  //     let lineNode
+  //     console.log(size)
+  //     console.log(slides[0].getBoundingClientRect())
+
+  //     setParameters(height, lineNode, gallery, slideHeight, slides, coordContainer)
+  //     setEvents()
+  //     resizeGallery()
+
+
+     
+
+
+  //     function setEvents(){
+  //       window.addEventListener('resize' , resizeGallery())
+   
+  //     }
+
+  //     function resizeGallery() {
+  //       setParameters(gallery)
         
 
-         
+  //     }
 
-            if(velocity === "up" && nextSwatch != undefined) {
-          
-              // currentPos = this.y - slideHeight
-              this.y = this.startY
-              currentPos = -this.y  + slideHeight
+  //   function setParameters(height, lineNode, gallery,coordContainer, slideHeight, slides){
+    
+  //     // const coordContainer = gallery.getBoundingClientRect().height
+    
+  //     height = coordContainer
+  //     console.log(height)
+  //     console.log(size)
+  //     lineNode = `${size * height}px`
+  //     console.log(lineNode)
+  //     setSlideHeight(`${slides[0].getBoundingClientRect().height}px`)
+  //     slideHeight = `${slides[0].getBoundingClientRect().height}px`
+  //     console.log(slideHeight)
+  // }
 
-              console.log(this.y)
-              console.log(this.startY)
-              console.log(this)
-        
-              console.log(currentPos)
-           
-               
-               TweenMax.to(slider, {y: -currentPos , duration: .6})
-               currentIndex++
-               swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
-               nextSwatch?.classList.add('active-swatch')
-               
-           }
-          
- 
-           if(velocity === 'down') {
-             this.y = this.startY
-             currentPos = this.y + slideHeight
-             TweenMax.to(slider, {y: currentPos , duration: 0.6})
-             currentIndex--
-             
-             
-             swatches.forEach(swatch => swatch.classList.remove('active-swatch'))
-             prevSwatch?.classList.add('active-swatch')
- 
-           }
-            
-      
-           
+  //     return () => {
+  //       window.removeEventListener('resize' , resizeGallery(gallery))
+
+  //     }
      
+
+ 
+     
+
+  //   }, [])
+
+  //   function setParameters(height, lineNode, gallery,coordContainer, slideHeight, slides){
+    
+  //     // const coordContainer = gallery.getBoundingClientRect().height
+    
+  //     height = coordContainer
+  //     console.log(height)
+  //     console.log(size)
+  //     lineNode = `${size * height}px`
+  //     console.log(lineNode)
+  //     setSlideHeight(`${slides[0].getBoundingClientRect().height}px`)
+  //     slideHeight = `${slides[0].getBoundingClientRect().height}px`
+  //     console.log(slideHeight)
+  // }
   
-          },
-          onDragEnd: function(e){
-            console.log('end')
-           
 
-           
-           
-          }
-          
-        })
+ 
 
-        return () => {
-          window.removeEventListener('resize', debounce(resizeGallery))
 
-        }
 
-        function debounce(func, time =100){
-          let timer
-          return function (event) {
-            clearTimeout(timer)
-            timer = setTimeout(func, time, event)
-          }
-  
-        }
-         
-      
-     }, [])
+
+   
   
 
     

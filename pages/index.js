@@ -99,16 +99,16 @@ export default function Home() {
          <Title title="украшения" refer="darkArrow" titleref="jewTitleBox" />
          </div>
 
-           <div className={styles.second__video}>
+           {/* <div className={styles.second__video}>
           <video ref={secondVideoRef} loop={true} muted={true} autoPlay={true} playsInline controls={false} >
             <source
             src='/bracelet.mp4'
             type='video/mp4'
             >
             </source>
-          </video>
+          </video> */}
           {/* <div ref={secondVideoOverlayRef} className='second-video-overlay'></div> */}
-          </div>
+ 
 
          
 
@@ -150,7 +150,7 @@ export default function Home() {
         {/* <div className={styles.video__cont}> */}
         <video ref={thirdVideoRef} className={styles.video__third}  muted={true} autoPlay={true} playsInline controls={false} >
             <source
-            src='/bottom-vid.mp4'
+            src='/backvideo.mp4'
             type='video/mp4'
             >
             </source>

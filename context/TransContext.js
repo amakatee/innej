@@ -138,7 +138,7 @@ export const TransContext = ({children}) => {
                  })
                 //  tlSecond.fromTo(secondText.current, {y: "-100%", opacity: 0}, {y: "y:0%", opacity:1,  stagger: 1, duration: 1})
 
-                 tlSecond.fromTo(q(".highlite"), {color: "rgba(rgba(52,52,52, 0.2)"}, {color: "rgba(rgba(52,52,52, 1)", stagger: 1})
+                 tlSecond.fromTo(q(".highlite"), {color: "rgba(rgba(255,255,255, 0.2)"}, {color: "rgba(rgba(255,255,255, 1)", stagger: 1})
                  tlSecond.fromTo(fairyRef.current, { y: "-60%" }, {y: "0%" , delay:.4} )
 
 
