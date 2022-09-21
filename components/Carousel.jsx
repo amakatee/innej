@@ -1,13 +1,14 @@
 import React, { useEffect, useRef} from 'react'
 import { useContext, useState } from 'react'
 import TransitionContext from '../context/TransContext'
-import {Swiper, SwiperSlide} from 'swiper/react'
+import  {Swiper, SwiperSlide} from 'swiper/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import {TweenMax, Power0} from 'gsap'
 import Draggable from "gsap/dist/Draggable";
-import {Navigation, EffectFade}  from "swiper"
+import SwiperCore, {Navigation, Pagination}  from "swiper"
 import 'swiper/css/navigation'
+SwiperCore.use([Pagination])
 
 
 const Carousel = () => {
@@ -247,14 +248,25 @@ const Carousel = () => {
             className='gallery'
      
             modules={[Navigation]}
-            navigation
+        
             effect
             slidesPerView={1}
-          
-            
+            pagination={{
+              el: '.swatch',
+              clickable:true,
+              renderBullet:(index,className ) => {
+                return  
+                 `<span className="`+ className + ">" +(index+1)+`</span>`
+
+               
+
+              }
+            }}
+            loop
             speed={800}
             direction="vertical"
-           
+            onSlideChange={() => console.log("slide chane")}
+            onSwiper={(swiper) => console.log(swiper)}
             
 
             >
