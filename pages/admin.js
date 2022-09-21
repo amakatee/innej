@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const admin = () => {
+const Admin = () => {
     const [pass, setPass] = useState() 
     const [showPanel, setShowPanel] = useState(true)
 
@@ -23,10 +23,12 @@ const admin = () => {
         </form>}
 
         {showPanel && <div>
-            admin page
+            <div className='admin-orders'>
+                
+            </div>
             </div>}
     </div>
   )
 }
 
-export default admin
+export default Admin
